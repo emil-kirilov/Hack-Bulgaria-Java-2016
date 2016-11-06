@@ -1,0 +1,15 @@
+package week3;
+
+public class Node<T> {
+	Node<T> right;
+	T value;
+	
+	public Node(T value){
+		this.value = value;
+		right = null;
+	}
+	
+	public void setRight(Node<T> nextEl){
+		right = nextEl;
+	}
+}
