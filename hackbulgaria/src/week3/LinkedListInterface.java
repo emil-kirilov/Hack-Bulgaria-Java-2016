@@ -1,6 +1,6 @@
 package week3;
 
-public interface LinkedListInterface<T> {
+public interface LinkedListInterface<T extends Comparable<T>> {
 	public void addFirst(T newElement);
 	public void addLast(T newElement);
 	public void add(T newElement, int index);
