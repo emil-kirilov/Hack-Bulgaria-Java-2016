@@ -1,0 +1,52 @@
+package week6;
+
+public class Person {
+	private String firstName;
+	private String secondName;
+	public int timeAccessed;
+
+	public String getFirstName() {
+		if(firstName == null) {
+			firstName = "Gosho";
+		}
+		
+		return firstName;
+	}
+	
+	public String getSecondName() {
+		if(secondName == null) {
+			secondName = "Geshov";
+		}
+		
+		return secondName ;
+	}
+	
+	@Override
+	public int hashCode(){
+		return 0;
+	}
+	
+	@Override
+	//a.equals(a) true
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		
+		if(this == obj) {
+			return true;
+		}
+		
+		// ne otchita nasledqvane
+//		if(this.getClass().equals( obj.getClass() )) {
+//			Person other = (Person)obj;
+//			if(this.getFirstName().equals( other.getFirstName() ) && this.getSecondName().equals( other.getSecondName() )){
+//				return true;
+//			}
+//		}
+		
+		if(obj instanceof Person)
+		
+		return false;
+	}
+}

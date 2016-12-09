@@ -1,0 +1,56 @@
+package week7;
+
+public class Panda{
+	private String name;
+	private String email;
+	private String gender;
+	
+	public Panda (String name, String email, String gender) {
+		this.name = name;
+		if(checkEmail(email)) {
+			this.email = email;			
+		} else {
+		}
+		
+		this.gender = gender;
+	}
+	
+	private boolean checkEmail(String email) {
+		
+		
+		return false;
+	}
+	
+	public boolean isMale() {
+		return name.equals("male");
+	}
+	
+	public boolean isFemale() {
+		return !isMale();
+	}
+		
+	public String name() {
+		return name;
+	}
+	
+	public String email() {
+		return email;
+	}
+	
+	public String gender() {
+		return gender;
+	}
+	
+	public String toString() {
+		String result = "";
+		result += "name: " + name + "\n";
+		result += "email: " + email+ "\n";
+		result += "gender: " + gender;
+		
+		return result;
+	}
+	
+	public boolean equals(Panda other) {
+		return (name.equals(other.name) && email.equals(other.email) && gender.equals(other.gender));		
+	}
+}

@@ -1,0 +1,17 @@
+package week8;
+
+public class Axe {
+	int damage;
+	int durability;
+	
+	public int hit() {
+		if (durability > 0) {
+			durability--;
+			return damage;
+		}
+		if(damage > 1){
+			damage--;
+		}
+		return 1;
+	}
+}

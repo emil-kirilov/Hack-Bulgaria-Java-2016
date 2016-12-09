@@ -17,5 +17,5 @@ public interface PSNInterface {
 	
 	public boolean areConnected(Panda p1, Panda p2) throws Exception;
 	
-	public int areConnected(int level, Panda p, int gender);
+	public int howManyGenderInNetwork(int level, Panda p, String gender);
 }	

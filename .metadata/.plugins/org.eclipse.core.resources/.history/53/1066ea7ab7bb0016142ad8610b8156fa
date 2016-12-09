@@ -1,0 +1,19 @@
+package week7;
+
+import java.util.ArrayList;
+
+import week7.PandaSocialNetwork.Account;
+
+public interface PSNInterface {
+	public void add(Panda p);
+	
+	public boolean hasPanda(Panda p);
+	
+	public void makeFriends(Panda p1, Panda p2);
+	
+	public boolean areFriends(Panda p1, Panda p2) throws Exception;
+	
+	public ArrayList<Panda> friendsOf(Panda p) throws Exception;
+	
+	public void printNetwork();
+}

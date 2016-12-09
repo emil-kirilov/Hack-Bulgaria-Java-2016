@@ -1,0 +1,45 @@
+package week6;
+
+public class Main {
+	public int binarySearch(int [] arr, int target){
+		int low = 0;
+		int high = arr.length - 1;
+			
+		int indexTarget = -1;
+		while(low <= high) {
+		int mid = low + ((high - low) / 2);
+			
+		if (arr[mid] == target) {
+			indexTarget = mid;
+			break;
+		} else if ( arr[mid] > target) {
+			high = mid - 1;
+		} else {
+			low = mid + 1;
+		}
+			}
+			
+		return indexTarget;
+	}
+	
+	private class Node {
+		private int value;
+		private Node left;
+		private Node right;
+		
+		public Node(int value, Node left, Node right) {
+			this.value = value;
+			this.left = left;
+			this.right = right;
+		}
+		
+		public int getValue(){
+			return value;
+		}
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> values = Array.asList(1 ,2 ,4, 6, 7, 10, 12, 15, 20, 23);
+		
+	}
+}

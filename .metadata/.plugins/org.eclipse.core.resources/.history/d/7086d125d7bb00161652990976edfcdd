@@ -1,0 +1,19 @@
+package week8;
+
+public class Shotgun {
+	int damage;
+	int durability;
+	
+	public Shotgun(int damage, int durability) {
+		this.damage = damage;
+		this.durability = durability;
+	}
+	
+	public int hit() {
+		if (durability > 0) {
+			durability--;
+			return damage;
+		}
+		return 1;
+	}
+}

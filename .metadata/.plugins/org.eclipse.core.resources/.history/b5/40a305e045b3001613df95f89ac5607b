@@ -1,0 +1,41 @@
+package week6;
+
+import java.util.*;
+
+public class MissingNumbers {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int sizeA = sc.nextInt();
+		ArrayList<Integer> A = new ArrayList<Integer>();
+		for (int i = 0; i < sizeA; i++) {
+			A.add(sc.nextInt());
+		}
+		System.out.println("--PRINT A--");
+		for (int i = 0; i < A.size(); i++) {
+			System.out.println(A.get(i));
+		}
+		
+		
+		int sizeB = sc.nextInt();
+		ArrayList<Integer> B = new ArrayList<Integer>();
+		for (int i = 0; i < sizeB; i++) {
+			B.add(sc.nextInt());
+		}
+		System.out.println("--PRINT B--");
+		for (int i = 0; i < B.size(); i++) {
+			System.out.println(B.get(i));
+		}
+		
+		System.out.println("--REMOVING--");
+		for (int i = 0; i < A.size(); i++) {
+			B.remove( A.get(i));
+		}
+		
+		for (int i = 0; i < B.size(); i++) {
+			System.out.println(B.get(i));
+		}
+		sc.close();
+	}
+
+}

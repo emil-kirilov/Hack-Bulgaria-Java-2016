@@ -1,0 +1,10 @@
+package week7;
+
+public class MergeSort<T extends Comparable<T>> {
+	public static void sort(<T>[] arr) {
+		
+	}
+	
+	public static void main(String[] args) {
+	}
+}

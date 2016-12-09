@@ -1,0 +1,21 @@
+package week6;
+
+public class Person {
+	public String FirstName;
+	public String SecondName;
+
+	@Override
+	public int hashCode(){
+		return 0;
+	}
+	
+	@Override
+	//a.equals(a) true
+	public boolean equals(Object obj){
+		if(this == obj) {
+			return true;
+		}
+		
+		return false;
+	}
+}

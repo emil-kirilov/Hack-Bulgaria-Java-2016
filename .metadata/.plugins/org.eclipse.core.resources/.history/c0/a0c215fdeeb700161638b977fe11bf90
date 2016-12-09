@@ -1,0 +1,16 @@
+package week7;
+
+import java.util.ArrayList;
+
+public class PandaGraph {
+	private class Wrapper {
+		private Panda self;
+		private ArrayList<Panda> friends;
+	}
+	
+	private ArrayList<Wrapper> vertices;
+	
+	public void add(Panda p) {
+		
+	}
+}

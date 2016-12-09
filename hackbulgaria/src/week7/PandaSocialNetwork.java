@@ -102,7 +102,8 @@ public class PandaSocialNetwork implements PSNInterface{
 		
 		while(toBeChecked.peek() != null) {
 			Queue<Account> newToBeChecked = new LinkedList<Account>();
-			for (int i = 0; i < toBeChecked.size(); i++) {
+			
+			while(toBeChecked.size() != 0) {
 				Account current = toBeChecked.poll();
 				if (areFriends(current.accOwner, p2)) {
 					return connectionLevel;
@@ -110,7 +111,7 @@ public class PandaSocialNetwork implements PSNInterface{
 					checked.add(current.accOwner);
 					
 					for(Panda p : current.friends) {
-						if ( !(newToBeChecked.contains(p) || checked.contains(p) || toBeChecked.contains(p)) ){
+						if ( !(newToBeChecked.contains(getAccount(p)) || checked.contains(p) || toBeChecked.contains(getAccount(p))) ){
 							newToBeChecked.add(getAccount(p));
 						}
 					}
@@ -131,37 +132,41 @@ public class PandaSocialNetwork implements PSNInterface{
 	}
 	
 	public int howManyGenderInNetwork(int level, Panda panda, String gender) {
-		Queue<Account> toBeChecked = new LinkedList<Account>();
-		toBeChecked.add(getAccount(panda));
-		ArrayList<Panda> checked = new ArrayList<Panda>();
-		int connectionLevel = 1;
+		ArrayList<Account> toBeChecked = new ArrayList<>();
+		ArrayList<Account> checked = new ArrayList<>();
 		
-		while(toBeChecked.peek() != null) {
-			if(connectionLevel == level) {
-				countGender(toBeChecked, gender);
-			} else {
-				Queue<Account> newToBeChecked = new LinkedList<Account>();
-				for (int i = 0; i < toBeChecked.size(); i++) {
-					Account current = toBeChecked.poll();
-					if (areFriends(current.accOwner, p2)) {
-						return connectionLevel;
-					} else {
-						checked.add(current.accOwner);
-						
-						for(Panda p : current.friends) {
-							if ( !(newToBeChecked.contains(p) || checked.contains(p) || toBeChecked.contains(p)) ){
-								newToBeChecked.add(getAccount(p));
-							}
-						}
+		ArrayList<Account> newToBeChecked = new ArrayList<>();
+		toBeChecked.add(getAccount(panda));
+		while(level > 0) {
+			newToBeChecked = new ArrayList<>();
+			for (Account acc : toBeChecked) {
+				checked.add(acc);
+				for(Panda friend : acc.friends) {
+					Account toAdd = getAccount(friend);
+					if( !(toBeChecked.contains(toAdd) || checked.contains(toAdd) || newToBeChecked.contains(toAdd))){
+						newToBeChecked.add(toAdd);						
 					}
 				}
-				connectionLevel++;
-				toBeChecked = newToBeChecked;
 			}
-			return -1;
+			toBeChecked = newToBeChecked;
+			level--;
 		}
 		
-		return 0;
+		int result = countGender(toBeChecked, gender);
+		return result;
+		
+	}
+	
+	private int countGender(ArrayList<Account> accounts, String gender) {
+		int result = 0;
+
+		for(Account acc : accounts) {
+			if(acc.accOwner.gender().equals(gender)) {
+				result++;
+			} 
+		}
+		
+		return result;
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -169,6 +174,9 @@ public class PandaSocialNetwork implements PSNInterface{
 		Panda emo = new Panda("emo", "ucha@java.az", "male");
 		Panda ivan = new Panda("ivan", "ivan@van.az", "male");
 		Panda ivan2 = new Panda("ivan2", "ivan2@van.az", "male");
+		Panda ivan3 = new Panda("ivan3", "ivan3@van.az", "male");
+		Panda ivan4 = new Panda("ivan4", "ivan4@van.az", "male");
+		Panda ivan5 = new Panda("ivan5", "ivan5@van.az", "male");
 		Panda jenskapanda = new Panda("jena", "drama@sigurna.bg", "female");
 
 		PandaSocialNetwork psn = new PandaSocialNetwork();
@@ -189,6 +197,17 @@ public class PandaSocialNetwork implements PSNInterface{
 		
 		System.out.println(psn.friendsOf(ivan));
 		psn.makeFriends(goshko, emo);
-		System.out.println(psn.connectionLevel(ivan2, goshko));
+		psn.makeFriends(ivan2, emo);
+		psn.makeFriends(ivan3, ivan2);
+		psn.makeFriends(ivan4, emo);
+		psn.makeFriends(ivan4, ivan5);
+		psn.makeFriends(ivan4, jenskapanda);
+		System.out.println(psn.connectionLevel(ivan3, goshko));
+		System.out.println(psn.connectionLevel(ivan3, ivan5));
+		System.out.println(psn.connectionLevel(ivan5, goshko));
+		System.out.println(psn.areConnected(jenskapanda,goshko));
+		System.out.println(psn.howManyGenderInNetwork(2, ivan, "male"));
+		System.out.println(psn.howManyGenderInNetwork(1, emo, "male"));
+		System.out.println(psn.howManyGenderInNetwork(2, emo, "female"));
 	}
 }

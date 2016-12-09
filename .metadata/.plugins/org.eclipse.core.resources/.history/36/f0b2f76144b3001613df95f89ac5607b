@@ -1,0 +1,25 @@
+package week6;
+
+import java.util.*;
+
+public class MissingNumbers {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int sizeA = sc.nextInt();
+		int[] A = new int[sizeA];
+		for (int i = 0; i < sizeA; i++) {
+			A[i] = sc.nextInt();
+		}
+		
+		int sizeB = sc.nextInt();
+		int[] B = new int[sizeB];
+		for (int i = 0; i < sizeB; i++) {
+			B[i] = sc.nextInt();
+		}
+		
+		
+		sc.close();
+	}
+
+}

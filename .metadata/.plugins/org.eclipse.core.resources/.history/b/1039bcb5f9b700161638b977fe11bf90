@@ -1,0 +1,84 @@
+package week7;
+
+import java.util.ArrayList;
+
+public class PandaSocialNetwork {
+	private class Wrapper {
+		private Panda self;
+		private ArrayList<Panda> friends;
+	
+		private Wrapper(Panda p) {
+			self = p;
+		}
+		
+		private boolean equals(Wrapper o) {
+			return self == o.self;
+		}
+		
+		private void setFriend(Panda o) {
+			if(!friends.contains(o)) {
+				friends.add(o);				
+			}
+		}
+	}
+	
+	private ArrayList<Wrapper> vertices;
+	
+	public void add(Panda p) {
+		vertices.add(new Wrapper(p));
+	}
+	
+	public boolean hasPanda(Panda p) {
+		return vertices.contains(new Wrapper(p));
+	}
+	
+	public void makeFriends(Panda p1, Panda p2) {
+		if(!hasPanda(p1)) {
+			add(p1);
+		}
+		
+		if(!hasPanda(p2)) {
+			add(p2);
+		}
+		
+		getWrapper(p1).setFriend(p2);
+		getWrapper(p2).setFriend(p1);
+	}
+	
+	public boolean areFriends(Panda p1, Panda p2) throws Exception {
+		Wrapper panda1 = getWrapper(p1);
+		if (panda1 == null) {
+			throw new Exception("No such panda" + p1);
+		}
+		
+		return panda1.friends.contains(new Wrapper(p2));
+	}
+	
+	public ArrayList<Panda> friendsOf(Panda p) throws Exception {
+		for (Wrapper w : vertices) {
+			if(w.self == p) {
+				return w.friends;
+			}
+		}
+		
+		String message = "No such panda - " + p;
+		throw new Exception(message);
+	}
+	
+	private Wrapper getWrapper(Panda p1) {
+		Wrapper result = null;
+		
+		for (Wrapper w : vertices) {
+			if(w.self == p1) {
+				result = w;
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

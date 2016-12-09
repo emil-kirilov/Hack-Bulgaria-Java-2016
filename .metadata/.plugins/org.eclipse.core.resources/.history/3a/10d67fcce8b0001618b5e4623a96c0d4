@@ -1,0 +1,8 @@
+package week6;
+
+public interface MapInterface<K, V> {
+	public void put(K key, V value);
+	public V get(K key, V value);
+	public void remove(K key, V value);
+	public boolean contains(K key);
+}

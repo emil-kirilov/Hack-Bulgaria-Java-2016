@@ -1,0 +1,12 @@
+package week8;
+
+public class ToShoot {
+	
+	public int hit() {
+		if (durability > 0) {
+			durability--;
+			return damage;
+		}
+		return 1;
+	}
+}

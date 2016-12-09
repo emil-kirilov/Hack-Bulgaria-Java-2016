@@ -1,0 +1,37 @@
+package week6;
+
+public class BulgarianPerson extends Person{
+	private String ucn;
+	
+	public String getUcn() {
+		return ucn;
+	}
+
+	/*
+	 * A - Person
+	 * B - BulgarianPerson
+	 * 
+	 * A.equals(B) -> true
+	 * B.equals(A) -> true
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		
+		if(this == obj) {
+			return true;
+		}
+		
+		// ne otchita nasledqvane
+		if(this.getClass().equals( obj.getClass() )) {
+			Person other = (Person)obj;
+			if(this.getFirstName().equals( other.getFirstName() ) && this.getSecondName().equals( other.getSecondName() )){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+}

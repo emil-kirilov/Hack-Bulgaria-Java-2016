@@ -1,0 +1,23 @@
+package week8;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		int zombiesCount = input.nextInt();
+		int zombiesHealth = input.nextInt();
+		int healthToTake = zombiesCount * zombiesHealth;
+		int counter = 0;
+		
+		Axe weapon = new Axe(10, 6);
+		
+		while(healthToTake > 0) {
+			healthToTake -= weapon.hit();
+			counter++;
+		}
+		System.out.println(counter);
+	}
+
+}

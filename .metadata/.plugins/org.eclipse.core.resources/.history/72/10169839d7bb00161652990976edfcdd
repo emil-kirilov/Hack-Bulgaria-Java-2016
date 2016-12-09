@@ -1,0 +1,12 @@
+package week8;
+
+public class Sword extends ToSmash{
+
+	public Sword(int damage, int durability) {
+		super(damage, durability);
+	}
+	
+	public String toString() {
+		return "Sword " + damage + " " + durablity;
+	}
+}

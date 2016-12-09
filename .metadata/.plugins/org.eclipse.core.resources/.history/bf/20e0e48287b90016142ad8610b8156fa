@@ -1,0 +1,46 @@
+package week7;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class FrogSkippingGame {
+	private ArrayList<Character> frogs =  new ArrayList<Character>();
+	int leadingFrogRight;
+	int leadingFrogLeft;
+
+	public FrogSkippingGame(int frogCount) {
+		for (int i = 0; i < frogCount; i++) {
+			frogs.add('<');
+		}
+		frogs.add('_');
+		for (int i = 0; i < frogCount; i++) {
+			frogs.add('>');
+		}
+		
+	}
+	
+	public void calculateStrategy() {
+		skip(leadingFrogRight);
+		skip(leadingFrogLeft);
+	}
+	
+	private void skip(int frog) {
+		
+	}
+	
+	public void printStrategy() {
+		for (int i = 0; i < frogs.size(); i++) {
+			System.out.println(frogs.get(i));
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int numberOfFrogs = s.nextInt();
+		FrogSkippingGame fsg = new FrogSkippingGame(numberOfFrogs);
+		//fsg.calculateStrategy();
+		fsg.printStrategy();
+		
+		
+	}
+}

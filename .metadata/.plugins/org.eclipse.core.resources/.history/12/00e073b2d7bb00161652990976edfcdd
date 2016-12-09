@@ -1,0 +1,18 @@
+package week8;
+
+public class ToSmash extends Weapon{
+	int maxDurability;
+	
+	public ToSmash(int damage, int durability) {
+		super(damage, durability);
+		maxDurability = durability;
+	}
+
+	public int hit() {
+		if (durability > 0) {
+			durability--;
+			return damage;
+		}
+		return 1;
+	}
+}

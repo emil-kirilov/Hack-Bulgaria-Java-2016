@@ -1,0 +1,40 @@
+package week6;
+
+public class Map<K, V> implements MapInterface<K, V> {
+	BucketInterface<K, V>[] buckets;
+	private double loadFactor;
+	private int size;
+	
+	public Map() {
+		size = 8;
+		loadFactor = 5; 
+		buckets = new LinkedBucket[size];
+	}
+	
+	@Override
+	public void put(K key, V value) {
+		int hashValue = key.hashCode() % size;
+		
+		buckets[hashValue].add(key, value);
+	}
+
+	@Override
+	public V get(K key) {
+		int hashValue = key.hashCode() % size;
+		
+		return buckets[hashValue].get(key);
+	}
+
+	@Override
+	public void remove(K key) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean contains(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

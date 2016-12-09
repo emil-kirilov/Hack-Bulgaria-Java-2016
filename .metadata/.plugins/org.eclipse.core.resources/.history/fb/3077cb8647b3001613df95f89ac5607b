@@ -1,0 +1,71 @@
+package week6;
+
+import java.util.*;
+
+public class MissingNumbers {
+	private static ArrayList<Integer> removeDuplicates(ArrayList<Integer> l) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		
+		for (int i = 0; i < l.size(); i++) {
+			if(!result.contains(l.get(0))){
+				result.add(l.get(0));
+			}
+		}
+		
+		return result;
+	}
+	
+	private static void sortAsc(ArrayList<Integer> l) {
+		for (int i = 1; i < l.size(); i++) {
+			for (int j = i - 1; j >= 0; j--) {
+				if (l.get(j) > l.get(j + 1)) {
+					int temp = l.get(j);
+					l.set(j, l.get(j + 1));
+					l.set(j + 1, temp);
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int sizeA = sc.nextInt();
+		ArrayList<Integer> A = new ArrayList<Integer>();
+		for (int i = 0; i < sizeA; i++) {
+			A.add(sc.nextInt());
+		}
+		System.out.println("--PRINT A--");
+		for (int i = 0; i < A.size(); i++) {
+			System.out.println(A.get(i));
+		}
+		
+		
+		int sizeB = sc.nextInt();
+		ArrayList<Integer> B = new ArrayList<Integer>();
+		for (int i = 0; i < sizeB; i++) {
+			B.add(sc.nextInt());
+		}
+		System.out.println("--PRINT B--");
+		for (int i = 0; i < B.size(); i++) {
+			System.out.println(B.get(i));
+		}
+		
+		System.out.println("--REMOVING--");
+		for (int i = 0; i < A.size(); i++) {
+			B.remove( A.get(i));
+		}
+		
+		B = removeDuplicates(B);
+		sortAsc(B);
+		for (int i = 0; i < B.size(); i++) {
+			System.out.println(B.get(i));
+		}
+		sc.close();
+	}
+
+//	10
+//	203 204 205 206 207 208 203 204 205 206
+//	13
+//	203 204 204 205 206 207 205 208 203 206 205 206 204
+}
