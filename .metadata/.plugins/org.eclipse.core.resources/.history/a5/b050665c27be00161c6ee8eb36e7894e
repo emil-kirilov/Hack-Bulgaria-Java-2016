@@ -1,0 +1,32 @@
+package week8;
+
+public abstract class Unit {
+	int health;
+	int mana;
+	
+	public boolean isAlive() {
+		return health > 0;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public abstract boolean canCast();
+
+	public takeHealing();
+
+	
+	
+	
+	
+	public takeMana();
+	
+	public	attack();
+	
+	public takeDamage(damage);
+}

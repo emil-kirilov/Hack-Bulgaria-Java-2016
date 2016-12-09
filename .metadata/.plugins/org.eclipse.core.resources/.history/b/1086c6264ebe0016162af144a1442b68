@@ -1,0 +1,11 @@
+package DungeonsAndDragons;
+
+public class Dungeon {
+	char[][] map = {
+			{"S", ".", "#", "#", ".", ".", ".", ".", ".", "T"},
+			{},
+			{},
+			{},
+			{}
+	}
+}

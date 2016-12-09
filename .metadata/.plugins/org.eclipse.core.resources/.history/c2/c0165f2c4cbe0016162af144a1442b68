@@ -1,0 +1,30 @@
+package DungeonsAndDragons;
+
+public class Hero extends Unit{
+	String name;
+	String title;
+	int manaRegen;
+
+	public Hero(int hp, int mp, String name, String title, int manaRegen) {
+		super(hp, mp);
+		this.name = name;
+		this.title = title;
+		this.manaRegen = manaRegen;
+	}
+
+	public String knownAs() {
+		return name + " the " + title;
+	}
+	
+	@Override
+	public int attack(String type) {
+		
+		return 0;
+	}
+
+	@Override
+	public void death() {
+		System.out.println("The mighty hero " + name + " the " + title + " was killed!");
+	}
+
+}

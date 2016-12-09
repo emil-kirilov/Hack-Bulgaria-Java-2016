@@ -97,7 +97,7 @@ public class PandaSocialNetwork implements PSNInterface{
 	public int connectionLevel(Panda p1, Panda p2) throws Exception {
 		Queue<Account> toBeChecked = new LinkedList<Account>();
 		toBeChecked.add(getAccount(p1));
-		ArrayList<Panda> checked = new ArrayList<Panda>();
+		ArrayList<Panda> checked = new ArrayList<Panda>(); 	
 		int connectionLevel = 1;
 		
 		while(toBeChecked.peek() != null) {

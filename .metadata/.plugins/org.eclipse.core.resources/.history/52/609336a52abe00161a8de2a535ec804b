@@ -1,0 +1,25 @@
+package DungeonsAndDragons;
+
+public class Enemy extends Unit{
+	int damage;
+	Weapon weapon;
+	Spell spell;
+	
+	public Enemy(int hp, int mp, int dmg) {
+		super(hp, mp);
+		damage = dmg;
+	}
+
+	@Override
+	public boolean canCast(Spell name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
