@@ -25,18 +25,9 @@ public class Dungeon {
 	private class Treasure {
 		Weapon[] armory = {new Weapon("Silver lance", 40), new Weapon("Silver bow", 40), new Weapon("Silver sword", 40)};
 		Spell[] library = {new Spell("Fire", 45, 45, 2), new Spell("Nosferatu", 30, 45, 2), new Spell("Shine", 40, 40, 2)};
-		int[] potions = {25, 50, 100};
-		
-		
-		public Treasure() {
-			
-		}
-		
-		
 	}
 	
 	Position coords = new Position();
-	Hero hero;
 	char[][] map = {
 			{'S', '.', '#', '#', '.', '.', '.', '.', '.', 'T'},
 			{'#', 'T', '#', '#', '.', '.', '#', '#', '#', '.'},
@@ -58,7 +49,6 @@ public class Dungeon {
 	}
 	
 	public boolean spawn(Hero hero) {
-		this.hero = hero;
 		boolean success = false;
 		
 		for (int i = 0; i < map.length; i++) {
@@ -119,38 +109,16 @@ public class Dungeon {
 		switch(tyle){
 		case 'E':
 			System.out.println("You encountered an enemy!");
-			startBattle(new Enemy(100, 100, 100));
+			
 			break;
 		case 'T':
 			System.out.println("You picked up a treasure!");
-			Treasure luck = new Treasure();
-			System.out.println(luck);
+			
 			break;
 		case 'G':
 			System.out.println("You cleared the map!");
 			
 			break;
-		}
-	}
-	
-	private void startBattle(Enemy enemy) {
-		while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
-			enemy.takeDamage(hero.attack("weapon"));
-			System.out.println(hero.knownAs() + " attack the enemy for " + hero.attack("weapon") + " damage.");
-			System.out.println("Enemy was left at " + enemy.getHealth() + "hp.");
-			
-			if(enemy.getHealth() > 0) {
-				hero.takeDamage(enemy.attack("weapon"));
-				System.out.println("The enemy attacked " + hero.knownAs() + " for " + enemy.attack("weapon") + " damage.");
-				System.out.println(hero.knownAs() + " was left at " + hero.getHealth() + "hp.");
-			}
-		}
-		
-		if(enemy.getHealth() <= 0) {
-			System.out.println(hero.knownAs() + " defeated the enemy!" );
-		} else {
-			System.out.println(hero.knownAs() + " was defeated!" );	
-			hero.death();
 		}
 	}
 
@@ -183,9 +151,6 @@ public class Dungeon {
 		level1.printMap();
 		level1.moveHero("right");
 		level1.printMap();
-		level1.moveHero("right");
-		level1.moveHero("right");
-		level1.moveHero("right");
-		level1.moveHero("up");
+
 	}
 }
