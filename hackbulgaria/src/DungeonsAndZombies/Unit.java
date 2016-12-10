@@ -22,9 +22,17 @@ public abstract class Unit {
 	public int getHealth() {
 		return health;
 	}
+	
+	public int getMaxHealth() {
+		return maxHP;
+	}
 
 	public int getMana() {
 		return mana;
+	}
+	
+	public int getMaxMana() {
+		return maxMP;
 	}
 
 	public void takeHealing(int healHP) {

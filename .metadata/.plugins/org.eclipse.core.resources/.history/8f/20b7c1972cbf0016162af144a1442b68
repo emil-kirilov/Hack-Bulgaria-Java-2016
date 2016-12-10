@@ -1,0 +1,19 @@
+package DungeonsAndZombies;
+
+public class Potion implements Treasureable{
+	int healAmount;
+		
+	public Potion (int healAmount) {
+		this.healAmount = healAmount;
+	}
+		
+	public int getHealAmount() {
+		return healAmount;
+	}
+		
+	public void activate(Hero h) {
+		h.takeHealing(getHealAmount());
+		h.takeMana(getHealAmount());
+	}
+}
+

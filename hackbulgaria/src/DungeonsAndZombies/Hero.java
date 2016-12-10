@@ -39,5 +39,4 @@ public class Hero extends Unit{
 	public void death() {
 		System.out.println("The mighty hero " + name + " the " + title + " was killed!");
 	}
-
 }

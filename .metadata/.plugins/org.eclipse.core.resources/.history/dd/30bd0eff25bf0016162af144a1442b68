@@ -1,0 +1,19 @@
+package DungeonsAndZombies;
+
+public class Spell {
+	String name;
+	int damage;
+	int manaCost;
+	int range;
+	
+	public Spell(String name, int damage, int manaCost, int range) {
+		this.name = name;
+		this.damage = damage;
+		this.manaCost = manaCost;
+		this.range = range;
+	}
+	
+	public String toString() {
+		return name + " does " + damage + ", costs " + manaCost + " annd has range of " + range + "!";
+	}
+}

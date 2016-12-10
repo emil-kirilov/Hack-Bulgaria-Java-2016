@@ -1,5 +1,8 @@
 package DungeonsAndZombies;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Dungeon {
 	private class Position {
 		int x;
@@ -25,18 +28,43 @@ public class Dungeon {
 	private class Treasure {
 		Weapon[] armory = {new Weapon("Silver lance", 40), new Weapon("Silver bow", 40), new Weapon("Silver sword", 40)};
 		Spell[] library = {new Spell("Fire", 45, 45, 2), new Spell("Nosferatu", 30, 45, 2), new Spell("Shine", 40, 40, 2)};
-		int[] potions = {25, 50, 100};
+		Potion[] potions = {new Potion(25), new Potion(50), new Potion(100)};
 		
+		String contains;
+		Treasureable treasure;
 		
 		public Treasure() {
-			
+			Random rand = new Random(); 
+			int type = rand.nextInt(3); 
+			int index = rand.nextInt(3); 
+			switch (type) {
+			case 0: 
+				treasure = armory[index];
+				contains = armory[index].toString();
+				break;
+			case 1: 
+				treasure = library[index];
+				contains = library[index].toString();
+				break;
+			case 2: 
+				treasure = potions[index];
+				contains = potions[index].toString(); 
+				break;
+			}
 		}
 		
+		public String toString() {
+			return "The treasure contains " + contains;
+		}
 		
+		public Treasureable getTreasure() {
+			return treasure;
+		}
 	}
 	
 	Position coords = new Position();
 	Hero hero;
+	boolean mapCleared = false;
 	char[][] map = {
 			{'S', '.', '#', '#', '.', '.', '.', '.', '.', 'T'},
 			{'#', 'T', '#', '#', '.', '.', '#', '#', '#', '.'},
@@ -89,7 +117,7 @@ public class Dungeon {
 			}
 			break;
 		case "down": 
-			if (coords.getX() < map[0].length && map[coords.getX() + 1][coords.getY()] != '#') {
+			if (coords.getX() < map.length && map[coords.getX() + 1][coords.getY()] != '#') {
 				map[coords.getX()][coords.getY()] = '.';
 				coords.setX(coords.getX() + 1);
 				trigger(coords.getX(), coords.getY());
@@ -103,7 +131,7 @@ public class Dungeon {
 			}
 			break;
 		case "right": 
-			if (coords.getY() < map.length && map[coords.getX()][coords.getY() + 1] != '#') {
+			if (coords.getY() < map[0].length && map[coords.getX()][coords.getY() + 1] != '#') {
 				map[coords.getX()][coords.getY()] = '.';
 				coords.setY(coords.getY() + 1);
 				trigger(coords.getX(), coords.getY());
@@ -119,14 +147,28 @@ public class Dungeon {
 		switch(tyle){
 		case 'E':
 			System.out.println("You encountered an enemy!");
-			startBattle(new Enemy(100, 100, 100));
+			startBattle(new Enemy(100, 100, 10));
 			break;
 		case 'T':
 			System.out.println("You picked up a treasure!");
 			Treasure luck = new Treasure();
 			System.out.println(luck);
+			
+			Scanner s = new Scanner(System.in);
+			boolean invalidAnswer = true;
+			while(invalidAnswer) {
+				System.out.println("Would you like to use this item? (yes/no)");
+				String response = s.nextLine();
+				if (response.equals("yes")) {
+					luck.getTreasure().activate(hero);
+					invalidAnswer = false;
+				} else if (response.equals("no")) {
+					invalidAnswer = false;
+				}
+			}
 			break;
 		case 'G':
+			mapCleared = true;
 			System.out.println("You cleared the map!");
 			
 			break;
@@ -135,13 +177,13 @@ public class Dungeon {
 	
 	private void startBattle(Enemy enemy) {
 		while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
-			enemy.takeDamage(hero.attack("weapon"));
 			System.out.println(hero.knownAs() + " attack the enemy for " + hero.attack("weapon") + " damage.");
-			System.out.println("Enemy was left at " + enemy.getHealth() + "hp.");
+			enemy.takeDamage(hero.attack("weapon"));
 			
 			if(enemy.getHealth() > 0) {
-				hero.takeDamage(enemy.attack("weapon"));
+				System.out.println("Enemy was left at " + enemy.getHealth() + "hp.");
 				System.out.println("The enemy attacked " + hero.knownAs() + " for " + enemy.attack("weapon") + " damage.");
+				hero.takeDamage(enemy.attack("weapon"));
 				System.out.println(hero.knownAs() + " was left at " + hero.getHealth() + "hp.");
 			}
 		}
@@ -150,8 +192,25 @@ public class Dungeon {
 			System.out.println(hero.knownAs() + " defeated the enemy!" );
 		} else {
 			System.out.println(hero.knownAs() + " was defeated!" );	
+		}
+	}
+	
+	public void startGame() {
+		printMap();
+		Scanner s = new Scanner(System.in);
+		while(hero.getHealth() > 0 && !mapCleared) {
+			System.out.print("Choose direction: ");
+			String direction = s.nextLine();
+			moveHero(direction);
+			printMap();
+		}
+		
+		if(mapCleared) {
+			System.out.println(hero.knownAs() + " cleared the map!" );
+		} else {
 			hero.death();
 		}
+		s.close();
 	}
 
 	
@@ -165,27 +224,6 @@ public class Dungeon {
 		emo.learn(dark);
 		
 		level1.spawn(emo);
-		level1.printMap();
-		
-		level1.moveHero("up");
-		level1.printMap();
-		level1.moveHero("left");
-		level1.printMap();
-		level1.moveHero("right");
-		level1.printMap();
-		level1.moveHero("up");
-		level1.printMap();
-		level1.moveHero("down");
-		level1.printMap();
-		level1.moveHero("down");
-		level1.printMap();
-		level1.moveHero("down");
-		level1.printMap();
-		level1.moveHero("right");
-		level1.printMap();
-		level1.moveHero("right");
-		level1.moveHero("right");
-		level1.moveHero("right");
-		level1.moveHero("up");
+		level1.startGame();
 	}
 }

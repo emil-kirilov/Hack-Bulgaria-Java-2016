@@ -1,0 +1,32 @@
+package DungeonsAndZombies;
+
+public class Potion implements Treasureable{
+	int healAmount;
+		
+	public Potion (int healAmount) {
+		this.healAmount = healAmount;
+	}
+		
+	public int getHealAmount() {
+		return healAmount;
+	}
+		
+	public void activate(Hero h) {
+		int heal = getHealAmount();
+		
+		int healingDone =  h.getMaxHealth() - h.getHealth();
+		if (healingDone > heal) {
+			healingDone = heal;
+		}
+		
+		h.takeHealing(getHealAmount());
+		h.takeMana(getHealAmount());
+		
+		System.out.println(h.knownAs() + "learned " + name + "!");
+	}
+	
+	public String toString() {
+		return "a potion that restores " + getHealAmount() + " hp and mp!";
+	}
+}
+
