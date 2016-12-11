@@ -16,25 +16,50 @@ public class Hero extends Unit{
 		return name + " the " + title;
 	}
 	
+	public int getManaRegen() {
+		return manaRegen;
+	}
+	
+	private void useMana(int amount) {
+		mana -= amount;
+	}
+	
+	public int getDamage(String weaponType) {
+		int damage = 2;
+		switch (weaponType) {
+		case "weapon":
+			damage = weapon.getDamage();
+			break;
+		case "spell":
+			if (mana >= spell.getManaCost()) {
+				damage = spell.getDamage();
+			}
+			break;
+		}
+		return damage;
+	}
+	
 	@Override
 	public int attack(String type) {
-		int result = 2;
+		int damage = 2;
 		switch (type) {
 		case "weapon": 
 			if (weapon != null) {
-				result = weapon.damage;
+				damage = weapon.damage;
 			}
 			break;
-		case "magic": 
-			if (spell != null) {
-				result = spell.damage;
+		case "spell": 
+			int manaCost = spell.getManaCost();
+			if (spell != null && getMana() >= manaCost) {
+				damage = spell.damage;
+				useMana(manaCost);
 			}
 			break;
 		}
 		
-		return result;
+		return damage;
 	}
-
+	
 	@Override
 	public void death() {
 		System.out.println("The mighty hero " + name + " the " + title + " was killed!");

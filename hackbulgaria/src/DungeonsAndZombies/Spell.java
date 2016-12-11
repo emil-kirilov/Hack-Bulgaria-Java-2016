@@ -21,4 +21,12 @@ public class Spell implements Treasureable{
 		h.learn(this);
 		System.out.println(h.knownAs() + " learned " + name + "!");
 	}
+	
+	public int getManaCost() {
+		return manaCost;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
 }

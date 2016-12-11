@@ -1,5 +1,7 @@
 package DungeonsAndZombies;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -147,38 +149,42 @@ public class Dungeon {
 		switch(tyle){
 		case 'E':
 			System.out.println("You encountered an enemy!");
-			startBattle(new Enemy(100, 100, 10));
+			startBattle(new Enemy(100, 100, 1));
 			break;
 		case 'T':
 			System.out.println("You picked up a treasure!");
-			Treasure luck = new Treasure();
-			System.out.println(luck);
-			
-			Scanner s = new Scanner(System.in);
-			boolean invalidAnswer = true;
-			while(invalidAnswer) {
-				System.out.println("Would you like to use this item? (yes/no)");
-				String response = s.nextLine();
-				if (response.equals("yes")) {
-					luck.getTreasure().activate(hero);
-					invalidAnswer = false;
-				} else if (response.equals("no")) {
-					invalidAnswer = false;
-				}
-			}
+			startTreasure();
 			break;
 		case 'G':
-			mapCleared = true;
 			System.out.println("You cleared the map!");
-			
+			mapCleared = true;
 			break;
 		}
 	}
 	
 	private void startBattle(Enemy enemy) {
+		String attackOptions = "";
+		if (hero.weapon != null) {
+			attackOptions = "weapon";
+		} 
+		if (hero.spell != null) {
+			attackOptions = (attackOptions.equals("")) ?  "spell" :"weapon and spell" ;
+		}
+		System.out.println("You can attack by " + attackOptions + ".");
+		System.out.println("What is your choice?");
+		List<String> validChoice =  Arrays.asList(attackOptions.split(" and "));
+		Scanner s = new Scanner(System.in);
+		String choice = s.nextLine();
+		while (!validChoice.contains(choice)) {
+			System.out.print("Please enter a valid choice: ");
+			choice = s.nextLine();
+			System.out.println();
+		}
+		
+		
 		while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
-			System.out.println(hero.knownAs() + " attack the enemy for " + hero.attack("weapon") + " damage.");
-			enemy.takeDamage(hero.attack("weapon"));
+			System.out.println(hero.knownAs() + " attacked the enemy for " + hero.getDamage(choice) + " damage.");
+			enemy.takeDamage(hero.attack(choice));
 			
 			if(enemy.getHealth() > 0) {
 				System.out.println("Enemy was left at " + enemy.getHealth() + "hp.");
@@ -195,10 +201,38 @@ public class Dungeon {
 		}
 	}
 	
+	private void startTreasure() {
+		Treasure luck = new Treasure();
+		System.out.println(luck);
+		
+		Scanner s = new Scanner(System.in);
+		boolean invalidAnswer = true;
+		while(invalidAnswer) {
+			System.out.println("Would you like to use this item?");
+			System.out.print("Your answer (yes/no): ");
+			String response = s.nextLine();
+			if (response.equals("yes")) {
+				luck.getTreasure().activate(hero);
+				invalidAnswer = false;
+			} else if (response.equals("no")) {
+				invalidAnswer = false;
+			}
+		}
+	}
+	
 	public void startGame() {
 		printMap();
 		Scanner s = new Scanner(System.in);
 		while(hero.getHealth() > 0 && !mapCleared) {
+			if (hero.getMana() < 100) {
+				hero.takeMana(hero.getManaRegen());
+				System.out.print(hero.knownAs() + " restored " + hero.getManaRegen() + " mp. ");
+			}
+			System.out.println("HP = " + hero.getHealth() + ", MP = " + hero.getMana() + ".");
+			System.out.println("Currently equiped:");
+			System.out.println("\t" + hero.weapon);
+			System.out.println("\t" + hero.spell);
+			
 			System.out.print("Choose direction: ");
 			String direction = s.nextLine();
 			moveHero(direction);
@@ -220,7 +254,7 @@ public class Dungeon {
 		
 		Weapon sword = new Weapon("Sword of Seals", 50);
 		emo.equip(sword);
-		Spell dark = new Spell("Luna", 50, 20, 2);
+		Spell dark = new Spell("Luna", 50, 40, 2);
 		emo.learn(dark);
 		
 		level1.spawn(emo);

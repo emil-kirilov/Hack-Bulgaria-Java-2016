@@ -15,6 +15,10 @@ public class Weapon implements Treasureable{
 	
 	public void activate(Hero h) {
 		h.equip(this);
-		System.out.println(h.knownAs() + "equiped" + name + "!");
+		System.out.println(h.knownAs() + " equiped " + name + "!");
+	}
+	
+	public int getDamage() {
+		return damage;
 	}
 }

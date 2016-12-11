@@ -35,6 +35,22 @@ public abstract class Unit {
 		return maxMP;
 	}
 
+	public int getWeaponDmg() {
+		int damage = 0;
+		if (weapon != null) {
+			damage = weapon.getDamage();	
+		}
+		return damage;
+	}
+	
+	public int getSpellDmg() {
+		int damage = 0;
+		if (spell != null) {
+			damage = spell.getDamage();	
+		}
+		return damage;
+	}
+	
 	public void takeHealing(int healHP) {
 		if (healHP + getHealth() > maxHP) {
 			health = maxHP;
