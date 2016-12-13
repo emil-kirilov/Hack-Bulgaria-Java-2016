@@ -27,10 +27,10 @@ public class Dungeon {
 		}
 	}
 	
-	private static class Treasure {
-		static final Weapon[] armory = {new Weapon("Silver lance", 40), new Weapon("Silver bow", 40), new Weapon("Silver sword", 40)};
-		static final Spell[] library = {new Spell("Fire", 45, 45, 2), new Spell("Nosferatu", 30, 45, 2), new Spell("Shine", 40, 40, 2)};
-		static final Potion[] potions = {new Potion(25), new Potion(50), new Potion(100)};
+	private class Treasure {
+		Weapon[] armory = {new Weapon("Silver lance", 40), new Weapon("Silver bow", 40), new Weapon("Silver sword", 40)};
+		Spell[] library = {new Spell("Fire", 45, 45, 2), new Spell("Nosferatu", 30, 45, 2), new Spell("Shine", 40, 40, 2)};
+		Potion[] potions = {new Potion(25), new Potion(50), new Potion(100)};
 		
 		String contains;
 		Treasureable treasure;
@@ -110,46 +110,35 @@ public class Dungeon {
 	}
 	
 	public void moveHero(String direction) {
-		int heroX = coords.getX();
-		int heroY = coords.getY();
-		
-		boolean validMove = false;
-		int[] movement = {0, 0};
-		
 		switch(direction) {
-		case "up":
-			if (heroX > 0 && map[heroX - 1][heroY] != '#') {
-				movement[0] -= 1; 
-				validMove = true;
+		case "up": 
+			if (coords.getX() > 0 && map[coords.getX() - 1][coords.getY()] != '#') {
+				map[coords.getX()][coords.getY()] = '.';
+				coords.setX(coords.getX() - 1);
+				trigger(coords.getX(), coords.getY());
 			}
 			break;
 		case "down": 
-			if (heroX < map.length && map[heroX + 1][heroY] != '#') {
-				movement[0] += 1; 
-				validMove = true;
+			if (coords.getX() < map.length && map[coords.getX() + 1][coords.getY()] != '#') {
+				map[coords.getX()][coords.getY()] = '.';
+				coords.setX(coords.getX() + 1);
+				trigger(coords.getX(), coords.getY());
 			}
 			break;
 		case "left": 
-			if (heroY > 0 && map[heroX][heroY - 1] != '#') {
-				movement[1] -= 1; 
-				validMove = true;
+			if (coords.getY() > 0 && map[coords.getX()][coords.getY() - 1] != '#') {
+				map[coords.getX()][coords.getY()] = '.';
+				coords.setY(coords.getY() - 1);
+				trigger(coords.getX(), coords.getY());
 			}
 			break;
 		case "right": 
-			if (heroY < map[0].length && map[heroX][heroY + 1] != '#') {
-				movement[1] += 1; 
-				validMove = true;
+			if (coords.getY() < map[0].length && map[coords.getX()][coords.getY() + 1] != '#') {
+				map[coords.getX()][coords.getY()] = '.';
+				coords.setY(coords.getY() + 1);
+				trigger(coords.getX(), coords.getY());
 			}
 			break;
-		}
-		
-		if (validMove) {
-			map[heroX][heroY] = '.';
-			coords.setX(heroX + movement[0]);
-			coords.setY(heroY + movement[1]);
-			trigger(heroX + movement[0], heroY + movement[1]);			
-		} else {
-			System.out.println("Invalid move. Turn was wasted.");
 		}
 	}
 	

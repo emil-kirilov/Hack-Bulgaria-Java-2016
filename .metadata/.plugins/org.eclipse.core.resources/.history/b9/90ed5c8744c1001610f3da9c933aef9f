@@ -113,44 +113,41 @@ public class Dungeon {
 		int heroX = coords.getX();
 		int heroY = coords.getY();
 		
-		boolean validMove = false;
-		int[] movement = {0, 0};
-		
 		switch(direction) {
 		case "up":
 			if (heroX > 0 && map[heroX - 1][heroY] != '#') {
-				movement[0] -= 1; 
-				validMove = true;
+				map[heroX][heroY] = '.';
+				coords.setX(heroX - 1);
+				trigger(heroX, heroY);
 			}
 			break;
 		case "down": 
 			if (heroX < map.length && map[heroX + 1][heroY] != '#') {
-				movement[0] += 1; 
-				validMove = true;
+				map[heroX][heroY] = '.';
+				coords.setX(heroX + 1);
+				trigger(heroX, heroY);
+
 			}
 			break;
 		case "left": 
 			if (heroY > 0 && map[heroX][heroY - 1] != '#') {
-				movement[1] -= 1; 
-				validMove = true;
+				map[heroX][heroY] = '.';
+				coords.setY(heroY - 1);
+				trigger(heroX, heroY);
+
 			}
 			break;
 		case "right": 
 			if (heroY < map[0].length && map[heroX][heroY + 1] != '#') {
-				movement[1] += 1; 
-				validMove = true;
+				map[heroX][heroY] = '.';
+				coords.setY(heroY + 1);
+				trigger(heroX, heroY);
 			}
 			break;
-		}
-		
-		if (validMove) {
-			map[heroX][heroY] = '.';
-			coords.setX(heroX + movement[0]);
-			coords.setY(heroY + movement[1]);
-			trigger(heroX + movement[0], heroY + movement[1]);			
-		} else {
+		default:
 			System.out.println("Invalid move. Turn was wasted.");
 		}
+		
 	}
 	
 	private void trigger(int x, int y){

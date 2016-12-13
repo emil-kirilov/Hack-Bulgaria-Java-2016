@@ -145,9 +145,7 @@ public class Dungeon {
 		
 		if (validMove) {
 			map[heroX][heroY] = '.';
-			coords.setX(heroX + movement[0]);
-			coords.setY(heroY + movement[1]);
-			trigger(heroX + movement[0], heroY + movement[1]);			
+			trigger(heroX + movement[0], heroX + movement[1]);			
 		} else {
 			System.out.println("Invalid move. Turn was wasted.");
 		}

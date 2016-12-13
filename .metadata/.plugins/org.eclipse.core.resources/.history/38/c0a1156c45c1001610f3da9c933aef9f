@@ -141,15 +141,13 @@ public class Dungeon {
 				validMove = true;
 			}
 			break;
+		default:
+			System.out.println("Invalid move. Turn was wasted.");
 		}
 		
 		if (validMove) {
 			map[heroX][heroY] = '.';
-			coords.setX(heroX + movement[0]);
-			coords.setY(heroY + movement[1]);
-			trigger(heroX + movement[0], heroY + movement[1]);			
-		} else {
-			System.out.println("Invalid move. Turn was wasted.");
+			trigger(coords.getX(), coords.getY());			
 		}
 	}
 	
