@@ -28,7 +28,7 @@ public class Dungeon {
 	}
 	
 	private static class Treasure {
-		static final Weapon[] armory = {new Weapon("Silver lance", 40), new Weapon("Silver bow", 40), new Weapon("Silver sword", 40)};
+		static final Weapon[] armory = {new Weapon("Silver lance", 40, 1), new Weapon("Silver bow", 40, 2), new Weapon("Silver sword", 40, 1)};
 		static final Spell[] library = {new Spell("Fire", 45, 45, 2), new Spell("Nosferatu", 30, 45, 2), new Spell("Shine", 40, 40, 2)};
 		static final Potion[] potions = {new Potion(25), new Potion(50), new Potion(100)};
 		
@@ -66,6 +66,7 @@ public class Dungeon {
 	
 	Position coords = new Position();
 	Hero hero;
+	AttackTypes currentType;
 	boolean mapCleared = false;
 	char[][] map = {
 			{'S', '.', '#', '#', '.', '.', '.', '.', '.', 'T'},
@@ -244,6 +245,9 @@ public class Dungeon {
 			System.out.println("\t" + hero.weapon);
 			System.out.println("\t" + hero.spell);
 			
+			if (visibleEnemyInRange()) {
+				//TODO ^^^^^^^^^^^^
+			}
 			System.out.print("Choose direction: ");
 			String direction = s.nextLine();
 			moveHero(direction);
@@ -257,13 +261,22 @@ public class Dungeon {
 		}
 		s.close();
 	}
+	
+	private boolean visibleEnemyInRange() {
+		int range = hero.getRange();
+		//TODO TEST!!!!!!!!!!!!!!
+		//TODO finish this method after you make a Map class
+		//TODO because it's a pain in the ass to check 2D char array
+		
+		return true;
+	}
 
 	
 	public static void main(String[] args) {
 		Dungeon level1 = new Dungeon();
 		Hero emo = new Hero("Emo", "Hacker", 100, 100, 2);
 		
-		Weapon sword = new Weapon("Sword of Seals", 50);
+		Weapon sword = new Weapon("Sword of Seals", 50, 1);
 		emo.equip(sword);
 		Spell dark = new Spell("Luna", 50, 40, 2);
 		emo.learn(dark);

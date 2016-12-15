@@ -29,4 +29,8 @@ public class Spell implements Treasureable{
 	public int getDamage() {
 		return damage;
 	}
+	
+	public int getRange() {
+		return range;
+	}
 }

@@ -1,0 +1,9 @@
+package DungeonsAndZombies;
+
+public enum AttackTypes {
+	WEAPON, MAGIC;
+	
+	public AttackTypes parseType(String type) {
+		
+	}
+}

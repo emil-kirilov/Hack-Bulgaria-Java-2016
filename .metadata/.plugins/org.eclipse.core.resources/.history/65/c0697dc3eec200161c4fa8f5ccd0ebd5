@@ -1,0 +1,32 @@
+package SQL;
+
+import java.sql.*;
+import java.util.List;
+
+public class MySQLHelper {
+	private Connection conn;
+	
+	public MySQLHelper(String dbURL, String dbUser, String dbPass) {
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql:"+dbURL, dbUser, dbPass);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean insertInto(String table, Object object) {
+		return false;
+	}
+	
+	public boolean deleteFrom(String table, Object object) {
+		return false;
+	}
+	
+	public boolean update(String table, Object object) {
+		return false;
+	}
+	
+	public List<List<String>> selectFrom(String table, String where) {
+		return null;
+	}
+}

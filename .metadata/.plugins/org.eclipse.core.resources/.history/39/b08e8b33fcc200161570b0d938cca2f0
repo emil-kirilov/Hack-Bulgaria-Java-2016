@@ -1,0 +1,19 @@
+package week7;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PSNTest {
+
+	PandaSocialNetwork psn;
+	
+	@Before
+	psn = new PandaSocialNetwork();
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

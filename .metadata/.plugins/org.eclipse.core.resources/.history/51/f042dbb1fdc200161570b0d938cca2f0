@@ -1,0 +1,14 @@
+package week7;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PandaTest {
+
+	@Test
+	public void creatingAPandaWithInvalidGenderShouldResultInAException() {
+		Panda p = new Panda("Genderless", "afds@dfs.com", "fmale")
+	}
+
+}

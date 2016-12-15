@@ -1,0 +1,18 @@
+package week7;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PandaTest {
+
+	@Test(expected=Exception.class)
+	public void creatingAPandaWithInvalidGenderShouldResultInAException() {
+		try {
+			Panda p = new Panda("Genderless", "afds@dfs.com", "fmale");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

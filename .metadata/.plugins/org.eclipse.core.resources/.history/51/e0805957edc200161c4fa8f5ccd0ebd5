@@ -1,0 +1,25 @@
+package SQL;
+
+import java.sql.*;
+
+public class MySQLHelper {
+	private Connection conn;
+	
+	public MySQLHelper(String dbName, String dbUser, String dbPass) {
+	
+	}
+	
+	public boolean InsertInto(String table, Object object) {
+		return false;
+	}
+	
+	public boolean deleteFrom(String table, Object object) {
+		return false;
+	}
+	
+	public boolean update(String table, Object object) {
+		return false;
+	}
+	
+	
+}

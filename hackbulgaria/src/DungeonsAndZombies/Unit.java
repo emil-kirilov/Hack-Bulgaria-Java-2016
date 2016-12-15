@@ -7,12 +7,14 @@ public abstract class Unit {
 	int maxHP;
 	int mana;
 	int maxMP;
+	int range;
 	
 	public Unit(int hp, int mp) {
 		health = hp;
 		maxHP = hp;
 		mana = mp;
 		maxMP = mp;
+		range = 1;
 	}
 	
 	public boolean isAlive() {
@@ -88,10 +90,16 @@ public abstract class Unit {
 	
 	public void equip(Weapon weapon) {
 		this.weapon = weapon;
+		range = Math.max(weapon.getRange(), range);
 	}
 
 	public void learn(Spell spell) {
 		this.spell = spell;
+		range = Math.max(spell.getRange(), range);
+	}
+	
+	public int getRange() {
+		return range;
 	}
 	
 	public abstract	int attack(String type);

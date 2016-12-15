@@ -1,0 +1,22 @@
+package week7;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PandaTest {
+
+	@Test(expected=Exception.class)
+	public void creatingAPandaWithInvalidGenderShouldResultInAException() throws Exception {
+		Panda p = new Panda("Genderless", "afds@dfs.com", "fmale");
+	}
+	
+	@Test(expected=Exception.class)
+	public void creatingAPandaShoulSetItsFieldsRight() throws Exception {
+		Panda p = new Panda("Milush", "manqk@sam.org", "male");
+		assertEquals("Milush", p.name());
+		assertEquals("manqk@sam.org", p.email());
+		assertEquals("male" , p.gender());
+	}
+
+}

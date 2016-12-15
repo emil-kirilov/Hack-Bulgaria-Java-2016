@@ -1,0 +1,23 @@
+package week9;
+
+public class SkippingFrogsR {
+	char[]start = {'>', '>', '>', '_', '<', '<', '<'};
+	int rock = 3;
+	String path = "";
+	
+	public String findSolution(char[] start, String path) {
+		if (start.equals("<<<_>>>")) {
+			path += "\n";
+			return path;
+		}
+		
+		if (start.charAt(rock - 1) == '>') {
+			start[rock - 1] = '_';
+			
+			
+			
+			path += path.
+		}
+		
+	}
+}
