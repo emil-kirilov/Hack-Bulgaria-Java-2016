@@ -50,6 +50,9 @@
 <part id="16"/>
 <part id="17"/>
 <part id="18"/>
+<part id="19"/>
+<part id="20"/>
+<part id="21"/>
 </presentation>
 </folder>
 </info>
@@ -122,13 +125,25 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/week6/MyLinkedBucket.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="786" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PandaSocialNetwork.java" partName="PandaSocialNetwork.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/week7/PandaSocialNetwork.java" title="PandaSocialNetwork.java" tooltip="hackbulgaria/src/week7/PandaSocialNetwork.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PandaSocialNetwork.java" partName="PandaSocialNetwork.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/week7/PandaSocialNetwork.java" title="PandaSocialNetwork.java" tooltip="hackbulgaria/src/week7/PandaSocialNetwork.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/week7/PandaSocialNetwork.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3162" selectionTopPixel="2196"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3046" selectionTopPixel="2196"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PSNInterface.java" partName="PSNInterface.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/week7/PSNInterface.java" title="PSNInterface.java" tooltip="hackbulgaria/src/week7/PSNInterface.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/week7/PSNInterface.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AttackTypes.java" partName="AttackTypes.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/DungeonsAndZombies/AttackTypes.java" title="AttackTypes.java" tooltip="hackbulgaria/src/DungeonsAndZombies/AttackTypes.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/DungeonsAndZombies/AttackTypes.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="259" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Potion.java" partName="Potion.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/DungeonsAndZombies/Potion.java" title="Potion.java" tooltip="hackbulgaria/src/DungeonsAndZombies/Potion.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/DungeonsAndZombies/Potion.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="4" selectionOffset="404" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Dungeon.java" partName="Dungeon.java" path="/home/emo/code/hackbg/java/workspace/hackbulgaria/src/DungeonsAndZombies/Dungeon.java" title="Dungeon.java" tooltip="hackbulgaria/src/DungeonsAndZombies/Dungeon.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hackbulgaria/src/DungeonsAndZombies/Dungeon.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="245" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -167,9 +182,6 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Errors"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="677" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -199,7 +211,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -465,22 +477,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/week6/MyLinkedBucket.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/week7/PandaSocialNetwork.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/week7/PSNInterface.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/DungeonsAndZombies/AttackTypes.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/DungeonsAndZombies/Potion.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/hackbulgaria/src/DungeonsAndZombies/Dungeon.java"/>
 </editors>
-<item historyLabel="LinkedBucket.java" index="0">
-<position info="not_deleted" x="553" y="0"/>
-</item>
-<item historyLabel="MyLinkedBucket.java" index="1">
-<position info="not_deleted" x="466" y="0"/>
-</item>
-<item historyLabel="LinkedBucket.java" index="0">
-<position info="not_deleted" x="553" y="0"/>
-</item>
-<item historyLabel="MyLinkedBucket.java" index="1">
-<position info="not_deleted" x="466" y="0"/>
-</item>
-<item historyLabel="LinkedBucket.java" index="0">
-<position info="not_deleted" x="553" y="0"/>
-</item>
 <item historyLabel="MyLinkedBucket.java" index="1">
 <position info="not_deleted" x="466" y="0"/>
 </item>
@@ -613,8 +613,23 @@
 <item historyLabel="PSNInterface.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="PandaSocialNetwork.java" index="2">
+<item historyLabel="PandaSocialNetwork.java" index="2">
 <position info="not_deleted" x="3147" y="0"/>
+</item>
+<item historyLabel="AttackTypes.java" index="4">
+<position info="not_deleted" x="259" y="0"/>
+</item>
+<item historyLabel="Potion.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Potion.java" index="5">
+<position info="not_deleted" x="503" y="0"/>
+</item>
+<item historyLabel="Potion.java" index="5">
+<position info="not_deleted" x="404" y="4"/>
+</item>
+<item active="true" historyLabel="Dungeon.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -633,6 +648,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Dungeon.java" tooltip="hackbulgaria/src/DungeonsAndZombies/Dungeon.java">
+<persistable path="/hackbulgaria/src/DungeonsAndZombies/Dungeon.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Potion.java" tooltip="hackbulgaria/src/DungeonsAndZombies/Potion.java">
+<persistable path="/hackbulgaria/src/DungeonsAndZombies/Potion.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AttackTypes.java" tooltip="hackbulgaria/src/DungeonsAndZombies/AttackTypes.java">
+<persistable path="/hackbulgaria/src/DungeonsAndZombies/AttackTypes.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PSNInterface.java" tooltip="hackbulgaria/src/week7/PSNInterface.java">
 <persistable path="/hackbulgaria/src/week7/PSNInterface.java"/>
 </file>
@@ -668,15 +692,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Node.java" tooltip="hackbulgaria/src/week3/Node.java">
 <persistable path="/hackbulgaria/src/week3/Node.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyStack.java" tooltip="hackbulgaria/src/week4/MyStack.java">
-<persistable path="/hackbulgaria/src/week4/MyStack.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyStackInterface.java" tooltip="hackbulgaria/src/week4/MyStackInterface.java">
-<persistable path="/hackbulgaria/src/week4/MyStackInterface.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BinaryTree.java" tooltip="hackbulgaria/src/week4/BinaryTree.java">
-<persistable path="/hackbulgaria/src/week4/BinaryTree.java"/>
 </file>
 </mruList>
 </workbench>

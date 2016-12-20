@@ -1,8 +1,0 @@
-package week7;
-
-public class Graph {
-	private class Wrapper {
-		private Panda self;
-		private Panda[] friends;
-	}
-}

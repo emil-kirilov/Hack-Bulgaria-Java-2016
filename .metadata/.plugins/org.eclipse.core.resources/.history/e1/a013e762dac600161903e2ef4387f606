@@ -1,0 +1,13 @@
+package InterviewDemo;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class FunctionManagerTest {
+
+	@Test
+	public void addingAFunctionShouldIncreasingTheArraySize() {
+	
+	}
+}

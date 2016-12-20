@@ -1,0 +1,21 @@
+package InterviewDemo;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class FunctionTest {
+
+	@Test
+	public void functionConstructorShouldCreateAValidFunction() {
+		String functionDeclaration = "f :: String -> Int";
+		Function testFunction = new Function(functionDeclaration);
+		
+		assertEquals("Name is wrong!!!. Expected \"f\", recieved " + testFunction.getName(), "f", testFunction.getName());
+		assertEquals("Name is wrong!!!. Expected \"f\", recieved " + testFunction.getName(), "String", testFunction.getInputType());
+		assertEquals("Name is wrong!!!. Expected \"f\", recieved " + testFunction.getName(), "Int", testFunction.getOutputType());
+	}
+	
+	
+
+}
