@@ -1,9 +1,0 @@
-package InterviewDemo;
-
-public class Function {
-	String name;
-	String inputType;
-	String outputType;
-	
-	
-}

@@ -1,7 +1,0 @@
-package SQL;
-
-public class MySQLHelper {
-	public static void main(Stirng[] args) {
-		
-	}
-}

@@ -1,7 +1,0 @@
-package SQL;
-
-public class Client {
-	public int id;
-	public String name;
-	public int age;
-}

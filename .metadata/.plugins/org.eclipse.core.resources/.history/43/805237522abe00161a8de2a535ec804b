@@ -1,8 +1,0 @@
-package DungeonsAndDragons;
-
-public class Spell {
-	String name;
-	int damage;
-	int manaCost;
-	int range;
-}

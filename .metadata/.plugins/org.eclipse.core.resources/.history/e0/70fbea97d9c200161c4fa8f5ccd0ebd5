@@ -1,5 +1,0 @@
-package DungeonsAndZombies;
-
-public enum AttackTypes {
-	WEAPON, MAGIC;
-}

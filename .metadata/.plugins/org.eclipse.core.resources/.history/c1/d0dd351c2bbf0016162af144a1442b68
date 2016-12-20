@@ -1,4 +1,0 @@
-package DungeonsAndZombies;
-
-public interface Treasureable {
-}
