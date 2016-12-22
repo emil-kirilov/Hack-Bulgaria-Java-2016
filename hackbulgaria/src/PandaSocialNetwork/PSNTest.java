@@ -1,6 +1,4 @@
-package week7;
-
-import static org.junit.Assert.*;
+package PandaSocialNetwork;
 
 import org.junit.Before;
 import org.junit.Test;

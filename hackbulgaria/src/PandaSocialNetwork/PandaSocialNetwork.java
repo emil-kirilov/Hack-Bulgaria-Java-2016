@@ -1,4 +1,4 @@
-package week7;
+package PandaSocialNetwork;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
