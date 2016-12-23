@@ -19,11 +19,12 @@ public class QuickSort<T extends Comparable <T>>{
 	}
 	
 	private int partition(ArrayList<T> arr, int low, int high) {
-		T pivot = middleOfThree(arr.get(low), arr.get((high - low) / 2 + low), arr.get(high));
+		//T pivot = middleOfThree(arr.get(low), arr.get((high - low) / 2 + low), arr.get(high));
+		T pivot = arr.get(high);
 		int indexOfPivot = arr.indexOf(pivot);
 		int indexOfLastSmallerThanPivot = low;
 		
-		swap(arr, indexOfPivot, high);
+		//swap(arr, indexOfPivot, high);
 		indexOfPivot = high;
 		
 		for (int i = low; i < high; i++) {
@@ -46,6 +47,7 @@ public class QuickSort<T extends Comparable <T>>{
 		arr.set(index2, temp);
 	}
 
+	//slows down the algorithm
 	private T middleOfThree(T first, T middle, T last ){
 		T max = null;
 		

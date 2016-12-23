@@ -9,7 +9,7 @@ public class MergeSort<T extends Comparable<T>> {
 		
 		if(n == 1) {
 			return arr;
-		}
+		} 
 		
 		ArrayList<T> left = new ArrayList<T>();
 		for (int i = 0; i < n / 2; i++) {

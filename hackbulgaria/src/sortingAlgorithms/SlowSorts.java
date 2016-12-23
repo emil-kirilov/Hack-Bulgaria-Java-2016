@@ -1,4 +1,4 @@
-package week6;
+package sortingAlgorithms;
 
 public class SlowSorts {
 	
