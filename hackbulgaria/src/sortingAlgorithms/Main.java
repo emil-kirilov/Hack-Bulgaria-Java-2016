@@ -26,7 +26,7 @@ public class Main {
 //		
 //	}
 		
-		QuickSort<Integer> ms = new QuickSort<Integer>();
+		QuickSort<Integer> qs = new QuickSort<Integer>();
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		arr.add(2);
 		arr.add(22456667);
@@ -41,7 +41,7 @@ public class Main {
 		arr.add(4);
 		arr.add(5);
 		arr.add(9);
-		ms.quickSort(arr);
+		qs.quickSort(arr);
 		for (int i = 0; i < arr.size(); i++) {
 			System.out.print(arr.get(i) + ", ");
 		}
