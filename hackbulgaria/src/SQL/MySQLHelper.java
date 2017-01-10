@@ -1,5 +1,6 @@
 package SQL;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +22,30 @@ public class MySQLHelper {
 		}
 	}
 	
-	public boolean insertInto(String table, Object object) {
+	private String makeFirstLetterCapital(String s) {
+		return s.substring(0,1).toUpperCase() + s.substring(1);
+	}
+	
+	public boolean insertInto(String table, Object item) {
+		Field[] fields = item.getClass().getDeclaredFields();
+		
+		try {
+			LinkedList<String> fielddsList = new LinkedList<String>();
+			LinkedList<String> fieldsNameList = new LinkedList<String>();
+			for(Field f: fields) {
+				fieldsNameList.add(f.getName());
+				fielddsList.add((String) item.getClass().getMethod("get" + makeFirstLetterCapital(f.getName())).invoke(item));
+			}
+			String fieldsSQL = join("", (String[])fielddsList.toArray(); 
+			String.filedsNamesSQL = String.join("", (String[]) fieldsNameList.toArray());
+			String sql = "INSERT INTO "+table+"(name, age) VALUES";
+		
+			this.executeSQL(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		return false;
 	}
 	

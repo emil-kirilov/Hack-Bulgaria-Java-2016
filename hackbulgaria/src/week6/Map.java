@@ -6,7 +6,6 @@ public class Map<K, V> implements MapInterface<K, V> {
 	private int size;
 	
 	public Map() {
-		
 		size = 8;
 		loadFactor = 5; 
 		buckets = new LinkedBucket[size];
@@ -17,9 +16,15 @@ public class Map<K, V> implements MapInterface<K, V> {
 		int bucketIndex = calculateBucketIndex(key);
 		
 		buckets[bucketIndex].add(key, value);
-	}
-	
-	private 
+		
+		if (loadFactor > size) {
+			BucketInterface<K, V>[] newBuckets = new LinkedBucket[size*2];
+			for (int i = 0; i < size; i++) {
+				newBuckets[i] = buckets[i];
+			}
+			loadFactor *= 2;
+		}
+	} 
 
 	@Override
 	public V get(K key) {

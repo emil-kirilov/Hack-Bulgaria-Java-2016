@@ -8,6 +8,7 @@ public class PandaTest {
 
 	@Test(expected=Exception.class)
 	public void creatingAPandaWithInvalidGenderShouldResultInAException() throws Exception {
+		@SuppressWarnings("unused")
 		Panda p = new Panda("Genderless", "afds@dfs.com", "fmale");
 	}
 	

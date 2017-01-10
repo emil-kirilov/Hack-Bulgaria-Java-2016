@@ -13,6 +13,14 @@ public class Person {
 		return firstName;
 	}
 	
+	public String getSecondName() {
+		if(firstName == null) {
+			firstName = "Goshev";
+		}
+		
+		return secondName;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj == null) {

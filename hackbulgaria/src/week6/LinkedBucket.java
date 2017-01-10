@@ -59,11 +59,8 @@ public class LinkedBucket<K, V> implements BucketInterface<K, V> {
 	@Override
 	public V get(K key) {
 		Entry target = getEntry(key);
-		if(target.getValue() == null) {
-			
-		} else {
-			
-		}
+		V value = (target == null) ? null : target.getValue();
+		return value;
 	}
-	
 }
+

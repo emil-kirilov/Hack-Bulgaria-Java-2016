@@ -1,9 +1,7 @@
 package week6;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Main {
 	public int binarySearch(int [] arr, int target){
@@ -38,9 +36,9 @@ public class Main {
 			this.right = right;
 		}
 		
-		public int getValue(){
-			return value;
-		}
+//		public int getValue(){
+//			return value;
+//		}
 		
 		public static Node build(List<Integer> values) {
 			if (values.isEmpty()) {

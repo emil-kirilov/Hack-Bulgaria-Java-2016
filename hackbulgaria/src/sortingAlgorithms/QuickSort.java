@@ -48,23 +48,23 @@ public class QuickSort<T extends Comparable <T>>{
 	}
 
 	//slows down the algorithm
-	private T middleOfThree(T first, T middle, T last ){
-		T max = null;
-		
-		if( first.compareTo(middle) > 0) {
-			if ( first.compareTo(last) > 0) {
-				max = last;
-			} else {
-				max = first;
-			}
-		} else {
-			if (middle.compareTo(last) > 0) {
-				max = last;
-			} else {
-				max = middle; 
-			}
-		}
-		return max;
-	}
+//	private T middleOfThree(T first, T middle, T last ){
+//		T max = null;
+//		
+//		if( first.compareTo(middle) > 0) {
+//			if ( first.compareTo(last) > 0) {
+//				max = last;
+//			} else {
+//				max = first;
+//			}
+//		} else {
+//			if (middle.compareTo(last) > 0) {
+//				max = last;
+//			} else {
+//				max = middle; 
+//			}
+//		}
+//		return max;
+//	}
 }
 
