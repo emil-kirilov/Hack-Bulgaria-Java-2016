@@ -14,7 +14,8 @@ public class Warehouse {
 		//if product is already registered
 		if (productID.containsKey(pr)) {
 			//increase quantity by 1
-			idQuantity.put(productID.get(pr), idQuantity.get(id_counter) + 1);
+			int product_id = productID.get(pr);
+			idQuantity.put(product_id, idQuantity.get(product_id) + 1);
 		
 		//if product is not registered
 		} else {
@@ -35,7 +36,7 @@ public class Warehouse {
 				return false;
 			}
 			
-			//return false if the warehoue doesn't have the requested quanitty
+			//return false if the warehouse doesn't have the requested quantity
 			if(idQuantity.get( e.getKey() ) < e.getValue()) {
 				return false;
 			}

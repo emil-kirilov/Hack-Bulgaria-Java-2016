@@ -12,6 +12,7 @@ public class DroneDeliverySystem {
 		Product milk = new Product(3, "milk", 2);
 		wh.addProduct(meat);
 		wh.addProduct(eggs);
+		wh.addProduct(eggs);
 		wh.addProduct(milk);
 		
 		WarehouseManager whm = new WarehouseManager();
