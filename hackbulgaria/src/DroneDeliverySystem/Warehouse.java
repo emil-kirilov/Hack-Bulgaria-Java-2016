@@ -8,6 +8,15 @@ public class Warehouse {
 	//product_id -> quantity
 	private HashMap<Integer, Integer> idQuantity = new HashMap<Integer, Integer>();
 	private int id_counter = 1;
+	private Coordinates xy;
+	
+	public Warehouse(int x, int y) {
+		Coordinates xy = new Coordinates(x, y);
+	}
+
+	public Coordinates getCoords() {
+		return xy;
+	}
 	
 	public void addProduct(Product pr) {
 		

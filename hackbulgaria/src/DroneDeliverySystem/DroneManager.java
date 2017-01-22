@@ -2,15 +2,20 @@ package DroneDeliverySystem;
 
 public class DroneManager {
 
-	public boolean judgeDist(int x, int y) {
-		if (distanceFromWarehouse(x, y) < 50) {
+	public boolean judgeDist(Coordinates target, Coordinates warehouse) {
+		int targetX = target.getX();
+		int targetY = target.getY();
+		int warehouseX = warehouse.getX();
+		int warehouseY = warehouse.getY();
+		
+		if (distance(targetX, targetY, warehouseX, warehouseY) < 50) {
 			return true;
 		}
 		return false;
 	}
 	
-	private double distanceFromWarehouse(int x, int y) {
-		return Math.sqrt( Math.pow(42 - x, 2) + Math.pow(42 - y, 2) );
+	private double distance(int targetX, int targetY, int warehouseX, int warehouseY) {
+		return Math.sqrt( Math.pow(targetX - warehouseX, 2) + Math.pow(targetY - warehouseY, 2) );
 	}
 
 }

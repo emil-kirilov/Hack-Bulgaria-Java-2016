@@ -8,7 +8,7 @@ public class RequestManager {
 		this.whm = whm;
 	}
 	public boolean acceptRequest(Request request) {
-		return dm.judgeDist(request.getCoordX(), request.getCoordY()) && whm.haveGoods(request.getGoods());
+		return dm.judgeDist(request.getCoords(), whm.getCoords(0)) && whm.haveGoods(0, request.getGoods());
 	}
 
 }

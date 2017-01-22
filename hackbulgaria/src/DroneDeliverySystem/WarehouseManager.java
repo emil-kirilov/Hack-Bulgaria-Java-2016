@@ -4,12 +4,18 @@ import java.util.HashMap;
 
 public class WarehouseManager {
 	ArrayList<Warehouse> whs = new ArrayList<Warehouse>();
-	
-		public void addWarehouse(Warehouse wh){
+
+	public void addWarehouse(Warehouse wh){
 		whs.add(wh);
 	}
 
-		public boolean haveGoods(HashMap<Integer, Integer> goods) {
-			return whs.get(0).haveGoods(goods);
-		}
+	//asks the warehouse with the given id whether it has the requested goods
+	public boolean haveGoods(int id, HashMap<Integer, Integer> goods) {
+		return whs.get(id).haveGoods(goods);
+	}
+
+	//gets the coordinates of the warehouse with the given id
+	public Coordinates getCoords(int id) {
+		return whs.get(id).getCoords();
+	}
 }

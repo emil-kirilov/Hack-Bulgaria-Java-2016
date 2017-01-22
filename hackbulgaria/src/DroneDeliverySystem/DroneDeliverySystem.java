@@ -6,7 +6,7 @@ public class DroneDeliverySystem {
 	public DroneDeliverySystem() {
 		DroneManager dm = new DroneManager();
 	
-		Warehouse wh = new Warehouse();
+		Warehouse wh = new Warehouse(42,42);
 		Product meat = new Product(1, "meat", 8);
 		Product eggs = new Product(2, "eggs", 2);
 		Product milk = new Product(3, "milk", 2);
