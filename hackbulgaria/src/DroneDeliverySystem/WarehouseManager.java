@@ -18,4 +18,9 @@ public class WarehouseManager {
 	public Coordinates getCoords(int id) {
 		return whs.get(id).getCoords();
 	}
+
+	//ask the warehouse with the given id to calculate the weight of the requested goods
+	public double calculateWeight(int id, HashMap<Integer, Integer> goods) {
+		return whs.get(id).calculateWeight(goods);
+	}
 }

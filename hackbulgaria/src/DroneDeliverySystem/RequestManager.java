@@ -8,7 +8,13 @@ public class RequestManager {
 		this.whm = whm;
 	}
 	public boolean acceptRequest(Request request) {
-		return dm.judgeDist(request.getCoords(), whm.getCoords(0)) && whm.haveGoods(0, request.getGoods());
+		//TODO when to dispatch the shipment??
+		if (dm.judgeDist(request.getCoords(), whm.getCoords(0)) && whm.haveGoods(0, request.getGoods())) {
+			double weight = whm.calculateWeight(0, request.getGoods());
+			return dm.canLift(weight);
+		}
+		
+		return false;
 	}
 
 }

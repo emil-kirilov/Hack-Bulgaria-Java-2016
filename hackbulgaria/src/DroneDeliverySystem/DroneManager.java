@@ -1,7 +1,10 @@
 package DroneDeliverySystem;
 
-public class DroneManager {
+import java.util.ArrayList;
 
+public class DroneManager {
+	private ArrayList<Drone> drones = new ArrayList<Drone>();
+	
 	public boolean judgeDist(Coordinates target, Coordinates warehouse) {
 		int targetX = target.getX();
 		int targetY = target.getY();
@@ -18,4 +21,11 @@ public class DroneManager {
 		return Math.sqrt( Math.pow(targetX - warehouseX, 2) + Math.pow(targetY - warehouseY, 2) );
 	}
 
+	public boolean canLift(double weight) {
+		return weight < 1000;
+	}
+
+	public void addDrone(Drone drone) {
+		drones.add(drone);
+	}
 }
