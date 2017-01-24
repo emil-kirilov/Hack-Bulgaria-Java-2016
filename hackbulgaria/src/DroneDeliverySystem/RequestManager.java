@@ -9,10 +9,12 @@ public class RequestManager {
 	}
 	public boolean acceptRequest(Request request) {
 		//TODO whm must provide the coords of the right warehouse
-		if (dm.judgeDist(request.getCoords(), whm.getCoords(0)) && whm.haveGoods(0, request.getGoods())) {
+		Coordinates whCoords = whm.getCoords(0);
+		if (dm.judgeDist(request.getCoords(), whCoords) && whm.haveGoods(0, request.getGoods())) {
 			double weight = whm.calculateWeight(0, request.getGoods());
-			if (dm.canLift(weight)) {
-				executeRequest(request);
+			int dronesNeeded = dm.dronesToLift(0, weight);
+			if (dronesNeeded) {
+				executeRequest(request, whCoords);
 				return true;
 			}
 		}
@@ -20,9 +22,9 @@ public class RequestManager {
 		return false;
 	}
 
-	public void executeRequest(Request request) {
-		dm.sendDrones(0, request);
-		whm.removeGoods(0, request);
+	public void executeRequest(Request request, Coordinates whCoords) {
+		dm.sendDrones(0, request, whCoords);
+		whm.removeGoods(0, request.getGoods());
 	}
 	
 }

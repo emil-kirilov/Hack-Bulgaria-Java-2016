@@ -5,14 +5,14 @@ public class Drone {
 	private int battery;
 	private int capacity;
 	private int chargingRate;
-	private boolean free;
+	private long availableAt;
 	
 	public Drone(int id, int battery, int capacity, int chargingRate) {
 		this.id = id;
 		this.battery = battery;
 		this.capacity = capacity;
 		this.chargingRate = chargingRate;
-		free  = true;
+		availableAt = System.currentTimeMillis();	
 	}
 
 	public int getId() {
@@ -31,11 +31,7 @@ public class Drone {
 		return chargingRate;
 	}
 
-	public boolean isFree() {
-		return free;
-	}
-	
-	public void setState(boolean state) {
-		free = state;
+	public long firstAvailable() {
+		return availableAt;
 	}
 }

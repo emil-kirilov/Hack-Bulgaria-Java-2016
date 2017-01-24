@@ -66,10 +66,10 @@ public class Warehouse {
 		return weight;
 	}
 
-	public void removeGoods(Request request) {
+	public void removeGoods(HashMap<Integer, Integer> goods) {
 		// go over the requested goods
 		// each entry represents product_id (requested)-> quantity(needed)
-		for (Entry<Integer, Integer> e : request.getGoods().entrySet()) {
+		for (Entry<Integer, Integer> e : goods.entrySet()) {
 			//getting the product so we can search by it in the productToQuantity hash
 			Product pr = idToProduct.get(e.getKey());
 			//refreshing the quantity by removing the desired amount

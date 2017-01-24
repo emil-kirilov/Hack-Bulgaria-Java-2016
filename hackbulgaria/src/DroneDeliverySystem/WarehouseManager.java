@@ -24,7 +24,7 @@ public class WarehouseManager {
 		return whs.get(id).calculateWeight(goods);
 	}
 
-	public void removeGoods(int id, Request request) {
-		whs.get(id).removeGoods(request);
+	public void removeGoods(int id, HashMap<Integer, Integer> goods) {
+		whs.get(id).removeGoods(goods);
 	}
 }
