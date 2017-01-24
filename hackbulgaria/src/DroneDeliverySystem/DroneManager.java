@@ -1,9 +1,10 @@
 package DroneDeliverySystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DroneManager {
-	private ArrayList<Drone> drones = new ArrayList<Drone>();
+	private HashMap<Integer, ArrayList<Drone>> whIDtoDrones = new HashMap<Integer, ArrayList<Drone>>();
 	
 	public boolean judgeDist(Coordinates target, Coordinates warehouse) {
 		int targetX = target.getX();
@@ -11,21 +12,37 @@ public class DroneManager {
 		int warehouseX = warehouse.getX();
 		int warehouseY = warehouse.getY();
 		
-		if (distance(targetX, targetY, warehouseX, warehouseY) < 50) {
+		if (calcDistance(targetX, targetY, warehouseX, warehouseY) < 50) {
 			return true;
 		}
 		return false;
 	}
 	
-	private double distance(int targetX, int targetY, int warehouseX, int warehouseY) {
+	private double calcDistance(int targetX, int targetY, int warehouseX, int warehouseY) {
 		return Math.sqrt( Math.pow(targetX - warehouseX, 2) + Math.pow(targetY - warehouseY, 2) );
 	}
 
-	public boolean canLift(double weight) {
-		return weight < 1000;
+	public boolean canLift(int id, double weight) {
+		return weight < getFreeDronesCapacity(whIDtoDrones.get(id));
 	}
 
-	public void addDrone(Drone drone) {
-		drones.add(drone);
+	private double getFreeDronesCapacity(ArrayList<Drone> drones) {
+		// check for battery life		
+		int capacity = 0;
+		for (Drone dr : drones) {
+			if (dr.isFree()) {
+				capacity += dr.getCapacity();
+			}
+		}
+		
+		return capacity;
+	}
+
+	public void addDrone(int id, Drone drone) {
+		whIDtoDrones.get(id).add(drone);
+	}
+
+	public void sendDrones(int id, Request request) {
+		
 	}
 }
