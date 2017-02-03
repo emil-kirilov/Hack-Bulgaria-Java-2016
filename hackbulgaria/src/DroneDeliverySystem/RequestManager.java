@@ -13,7 +13,7 @@ public class RequestManager {
 		if (dm.judgeDist(request.getCoords(), whCoords) && whm.haveGoods(0, request.getGoods())) {
 			double weight = whm.calculateWeight(0, request.getGoods());
 			int dronesNeeded = dm.dronesToLift(0, weight);
-			if (dronesNeeded) {
+			if (dronesNeeded > 0) {
 				executeRequest(request, whCoords);
 				return true;
 			}

@@ -26,7 +26,7 @@ public class DroneManager {
 
 	public int dronesToLift(int id, double weight) {
 		int res = 0;
-		//remove drone's capacity from weight until un reaches negative value
+		//remove drone's capacity from weight until it reaches negative value
 		if (weight < getFreeDronesCapacity(whIDtoDrones.get(id))) {
 			res = Math.ceil(weight / );
 		}

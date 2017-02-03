@@ -5,6 +5,7 @@ public class Drone {
 	private int battery;
 	private int capacity;
 	private int chargingRate;
+	private boolean isFree;
 	private long availableAt;
 	
 	public Drone(int id, int battery, int capacity, int chargingRate) {
@@ -12,7 +13,7 @@ public class Drone {
 		this.battery = battery;
 		this.capacity = capacity;
 		this.chargingRate = chargingRate;
-		availableAt = System.currentTimeMillis();	
+		isFree = true;
 	}
 
 	public int getId() {
@@ -33,5 +34,12 @@ public class Drone {
 
 	public long firstAvailable() {
 		return availableAt;
+	}
+	
+	public boolean isFree() {
+		if(availableAt < System.currentTimeMillis()) {
+			isFree = true;
+		}
+		return isFree;
 	}
 }
