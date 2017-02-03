@@ -23,4 +23,22 @@ public enum TimeFrame {
 		}
 		return result;
 	}
+
+	public long toMillis() {
+		long result = 0;
+		
+		switch (this) {
+		case DAYLY:
+			//1000 milliseconds * 60 seconds * 60 minutes * 24 hours = 1 day
+			result = 1000 * 60 * 60 * 24;
+			break;
+		case MONTHLY:
+			result = 1000 * 60 * 60 * 24 * 30;
+			break;
+		case YEARLY:
+			result = 1000 * 60 * 60 * 24 * 30 * 12;
+			break;
+		}
+		return result;
+	}
 }

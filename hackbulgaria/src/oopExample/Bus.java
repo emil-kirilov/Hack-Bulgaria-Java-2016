@@ -7,7 +7,8 @@ public class Bus extends Vehicle {
 		this.year = year;
 		this.model = model;
 	}
-
+	
+	//hardcoded the model :s
 	public static Vehicle generateRandomBus(int year) {
 		return new Bus(year, "Mercedes");
 	}

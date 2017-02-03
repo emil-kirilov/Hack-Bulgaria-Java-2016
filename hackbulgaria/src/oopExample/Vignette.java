@@ -11,7 +11,7 @@ class Vignette implements Comparable<Vignette>{
 	private int timeToStick;
 	
 	public String toString() {
-		return "Color: " + color + "  Price: " + price;
+		return "Color: " + color + "  Time Frame: " + timeFrame + "  Price: " + price;
 	}
 	
 	public int getPrice() {
@@ -32,6 +32,10 @@ class Vignette implements Comparable<Vignette>{
 	
 	Date getDateOfIssue() {
 		return dateOfIssue;
+	}
+	
+	Date getGetExpiryDate() {
+		return new Date(dateOfIssue.getTime() + timeFrame.toMillis());
 	}
 	
 	public Vignette(TimeFrame timeFrame, Color color) {

@@ -18,7 +18,7 @@ public class Driver {
 	}
 
 	public String toString() {
-		return "Vehicles: " + vehicles.size() + "  Vehicles with out-of-date-vignette: X" + "  Cash:" + cash;
+		return "Vehicles: " + vehicles.size() + "  Vehicles with out-of-date-vignette: " + countExpiredVignettes() + "  Cash:" + cash;
 	}
 	
 	
@@ -43,15 +43,21 @@ public class Driver {
 	public void buyRandomVignettes(int vehiclesCount) {
 		List<Vehicle> randomVehicles = pickRandomVehicles(vehiclesCount);
 		for (Vehicle vehicle : randomVehicles) {
-			//driver decides the time period for the new vignette
-			TimeFrame randomTimeFrame = TimeFrame.generateRandomTimeFrame();
-			VehicleClass randomVehicleClass = vehicle.getVehicleClass();
-			
-			if ( canBuyVignette(randomVehicleClass, randomTimeFrame) ) {
-				Vignette boughtVignette = buyVignette(randomVehicleClass, randomTimeFrame);
-				stickVignette(boughtVignette, vehicle);
-			}
-				
+			purchaseAndStickVignetteForVehicle(vehicle);				
+		}
+	}
+	
+	//As this method is being call multiple times 2 things can happen:
+	//driver's money will end and this method will continue to execute needlessly, but
+	//it is guaranteed that the driver will buy maximum number of vignettes possible
+	private void purchaseAndStickVignetteForVehicle(Vehicle vehicle) {
+		//driver decides the time period for the new vignette
+		TimeFrame randomTimeFrame = TimeFrame.generateRandomTimeFrame();
+		VehicleClass randomVehicleClass = vehicle.getVehicleClass();
+		
+		if ( canBuyVignette(randomVehicleClass, randomTimeFrame) ) {
+			Vignette boughtVignette = buyVignette(randomVehicleClass, randomTimeFrame);
+			stickVignette(boughtVignette, vehicle);
 		}
 	}
 
@@ -94,7 +100,32 @@ public class Driver {
 
 	public void buyRandomVignettesForAll() {
 		for (Vehicle vehicle : vehicles ) {
-			
+			purchaseAndStickVignetteForVehicle(vehicle);
 		}
+	}
+	
+	private int countExpiredVignettes() {
+		int result = 0;
+		for (Vehicle vehicle : vehicles) {
+			if (vehicle.vignetteExpired()) {
+				result++;
+			}
+		}
+		return result;
+	}
+	//public void showVehicles() {
+	//	for (Vehicle vehicle : vehicles) {
+	//		System.out.println("Vignette expired? " + vehicle.vignetteExpired());
+	//	}
+	//}
+
+	public List<Vehicle> trucksWithExpiredVignettes() {
+		List<Vehicle> result = new ArrayList<>();
+		for (Vehicle vehicle : vehicles) {
+			if (vehicle.isATruck()) {
+				result.add(vehicle);
+			}
+		}
+		return result;
 	}
 }

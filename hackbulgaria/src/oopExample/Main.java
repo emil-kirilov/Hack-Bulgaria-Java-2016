@@ -8,11 +8,6 @@ public class Main {
 	public static void main(String[] args){
 		//1.
 		GasStation gasStation = new GasStation();
-		PriorityQueue<Vignette> v = gasStation.getVignettes(); 
-		int length = v.size();
-		for (int i = 0; i < length; i ++) {
-			System.out.println(v.poll());
-		}
 		
 		//2.
 		DriversCreator driversCreator = new DriversCreator(20);
@@ -35,6 +30,7 @@ public class Main {
 		//}
 		
 		//4.
+		//TODO check whether buyRandom___ works correctly
 		for (int i = 0; i < drivers.size(); i++) {
 			if( i % 3 == 0) {
 				drivers.get(i).buyRandomVignettes(5);
@@ -43,21 +39,28 @@ public class Main {
 			}
 		}
 		
-//		//5.
-//		for (Driver driver : drivers) {
-//			System.out.println(driver);
-//		}
-//		
-//		//6.
-//		for (Vignette vignette : gasStation.getVignettes()) {
-//			System.out.println(vignette);
-//		}
-//		
-//		//7.
-//		for (Truck truck : vehiclesCreator.getTheTrucks()) {
-//			if (truck.vignetteExpired(new Date())) {
-//				System.out.println(truck);
-//			}
-//		}
+		//you can see how driver's money are spent
+		//for (Driver driver : driversCreator.getDrivers()) {
+		//	System.out.println(driver);
+		//	driver.showVehicles();
+		//}
+		
+		
+		//5.
+		for (Driver driver : drivers) {
+			System.out.println(driver);
+		}
+
+		//6.
+		PriorityQueue<Vignette> orderedVignetes = gasStation.getVignettes(); 
+		int length = orderedVignetes.size();
+		for (int i = 0; i < length; i ++) {
+			System.out.println(orderedVignetes.poll());
+		}
+		
+		//7.
+		for (Driver driver : drivers) {
+			System.out.println(driver.trucksWithExpiredVignettes());
+		}
 	}
 }

@@ -16,8 +16,10 @@ public abstract class Vehicle {
 	}
 	
 	//Ensured that the vehicleClass variable will be set when creating a Vehicle object
+	//I am setting the vignette to be null on a brand new vehicle. Carefull with that, always call super first.
 	protected Vehicle(VehicleClass vehicleClass) {
 		this.vehicleClass = vehicleClass;
+		this.vignette = null;
 	}
 	
 	public static Vehicle generateRandomVehicle() {
@@ -41,8 +43,12 @@ public abstract class Vehicle {
 	}
 	
 	public boolean vignetteExpired() {
+		if (vignette == null) {
+			return true;
+		}
+		
 		boolean result = false;
-		if ( vignette.getDateOfIssue().compareTo(new Date()) < 0 ) {
+		if ( vignette.getGetExpiryDate().compareTo(new Date()) < 0 ) {
 			result = true;
 		}
 		return result;
@@ -54,5 +60,9 @@ public abstract class Vehicle {
 
 	public String toString() {
 		return "Class: " + vehicleClass + "  Year: " + year + "  Model: " + model;
+	}
+
+	public boolean isATruck() {
+		return this.vehicleClass == VehicleClass.TRUCK;
 	}
 }

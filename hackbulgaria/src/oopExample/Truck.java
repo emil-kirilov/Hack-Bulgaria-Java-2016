@@ -8,6 +8,7 @@ public class Truck extends Vehicle{
 		this.model = model;
 	}
 	
+	//hardcoded the model :s
 	static Truck generateRandomTruck(int year) {
 		return new Truck(year, "CAT");
 	}
