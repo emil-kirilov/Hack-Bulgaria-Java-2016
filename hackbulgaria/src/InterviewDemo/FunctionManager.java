@@ -1,9 +1,10 @@
 package InterviewDemo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FunctionManager {
-	ArrayList<Function> funcs = new ArrayList<Function>();
+	List<Function> funcs = new ArrayList<Function>();
 	
 	public void add(Function f) {
 		funcs.add(f);

@@ -169,7 +169,7 @@ public class PandaSocialNetwork implements PSNInterface{
 		return result;
 	}
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception{
 		Panda goshko = new Panda("goshko", "debel@sam.bg", "male");
 		Panda emo = new Panda("emo", "ucha@java.az", "male");
 		Panda ivan = new Panda("ivan", "ivan@van.az", "male");
@@ -208,6 +208,5 @@ public class PandaSocialNetwork implements PSNInterface{
 		System.out.println(psn.areConnected(jenskapanda,goshko));
 		System.out.println(psn.howManyGenderInNetwork(2, ivan, "male"));
 		System.out.println(psn.howManyGenderInNetwork(1, emo, "male"));
-		System.out.println(psn.howManyGenderInNetwork(2, emo, "female"));
 	}
 }

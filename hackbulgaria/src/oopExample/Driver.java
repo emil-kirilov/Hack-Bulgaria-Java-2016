@@ -17,6 +17,10 @@ public class Driver {
 		vehicles = new ArrayList<>();
 	}
 
+	public Name getName() {
+		return name;
+	}
+	
 	public String toString() {
 		return "Vehicles: " + vehicles.size() + "  Vehicles with out-of-date-vignette: " + countExpiredVignettes() + "  Cash:" + cash;
 	}

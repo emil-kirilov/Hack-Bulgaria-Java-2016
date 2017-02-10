@@ -1,14 +1,13 @@
 package oopExample;
 
-import java.util.List;
 import java.util.PriorityQueue;
 
 public class GasStation {
-	private double income;
+	private int income;
 	private PriorityQueue<Vignette> vignettes;
 	
-	public void sellVignettes(List<Vehicle> vehicles, Driver driver) {
-		
+	public int getIncome() {
+		return income;
 	}
 	
 	public Vignette sellVignette(VehicleClass vehicleClass, TimeFrame timeFrame) {
