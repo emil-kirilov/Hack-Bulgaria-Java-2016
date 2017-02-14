@@ -17,7 +17,7 @@ public class Main {
         }
 
         for (int i = 0; i < PHILOSOPHERS_COUNT; i++) {
-            Philosopher p = new Philosopher(i, forks[i], forks[(i + 1) % PHILOSOPHERS_COUNT]);
+            Philosopher2 p = new Philosopher2(i, forks[i], forks[(i + 1) % PHILOSOPHERS_COUNT]);
             service.execute(p);
         }
 

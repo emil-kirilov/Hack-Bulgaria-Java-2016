@@ -3,16 +3,16 @@ package diningPhilosophers;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Philosopher implements Runnable {
+class Philosopher2 implements Runnable {
     private final int id;
     private Random random = ThreadLocalRandom.current();
-    private Fork leftFork;
-    private Fork rightFork;
+    private Fork lesserIdFork;
+    private Fork biggerIdFork;
 
-    public Philosopher(int id, Fork a, Fork b) {
+    public Philosopher2(int id, Fork a, Fork b) {
         this.id = id;
-        this.leftFork = a;
-        this.rightFork = b;
+        this.lesserIdFork = a.getID() < b.getID() ? a : b;
+        this.biggerIdFork = a.getID() < b.getID() ? b : a; 
     }
     
     @Override
@@ -20,10 +20,10 @@ public class Philosopher implements Runnable {
         try {
             while (true) {
                 think();
-                if (Fork.pick2Forks(leftFork, rightFork, this)) {
+                if (Fork.pick2Forks(lesserIdFork, biggerIdFork, this)) {
                 	eat();
-                	leftFork.putDown(this);
-                	rightFork.putDown(this);
+                	lesserIdFork.putDown(this);
+                	biggerIdFork.putDown(this);
                 }
             }
         } catch (InterruptedException e) {

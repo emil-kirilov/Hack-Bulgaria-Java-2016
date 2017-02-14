@@ -33,9 +33,37 @@ public class Fork {
 			System.out.println(p + " put down " + this);
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Fork " + id;
+	}
+	
+	public int getID() {
+		return id;
+	}
+
+	//Method for class Philosopher 2
+	public static boolean pick2Forks(Fork leserID, Fork biggerID, Philosopher2 p) {
+		boolean result = false;
+		if (leserID.lock.tryLock()){
+			System.out.println(p + " picked up " + leserID);
+			
+			if (biggerID.lock.tryLock()) {
+				System.out.println(p + " picked up " + biggerID);
+				result = true;
+			} else {
+				leserID.lock.unlock();
+				System.out.println(p + " put down " + leserID);
+			}
+		}
+		return result;
+	}
+	
+	public void putDown(Philosopher2 p) {
+		if (this != null) {
+			lock.unlock();
+			System.out.println(p + " put down " + this);
+		}
 	}
 }
