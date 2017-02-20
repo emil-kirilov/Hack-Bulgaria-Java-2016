@@ -1,64 +1,117 @@
 package hackathonPrefixOracle;
 
-public class BranchNode extends Node{
-	//references the first node of the subtrie 
-	//Node firstNode;
-	private int charOfInterest;
-	//stands for the letters of the alphabet and '#' (End Of Word)
+public class BranchNode extends Node {
+	// references the first node of the subtrie
+	String wordSoFar;
+	// stands for the letters of the alphabet and '#' (End Of Word)
 	private Node[] children = new Node[27];
-	private int childrenCount = 0;
-	
-	
-	public BranchNode(int charOfInterest) {
-		this.charOfInterest = charOfInterest;
+
+	public BranchNode(String wordSoFar) {
+		this.wordSoFar = wordSoFar;
 	}
-	
-	public int getcharOfInterest() {
-		return charOfInterest;
+
+	public char getCharOfInterest(String word) {
+		return word.charAt(wordSoFar.length());
 	}
-	
-	public void setcharOfInterest(int charOfInterest) {
-		this.charOfInterest= charOfInterest;
+
+	public int indexOfCharOfInterest() {
+		return wordSoFar.length() + 1;
 	}
-	
+
 	public Node getChild(int index) {
 		return children[index];
 	}
-	
+
 	public void setChild(int index, Node node) {
 		children[index] = node;
 	}
-	
-	public int getChildrenCount() {
-		return childrenCount;
+
+	public void insert(String word) {
+		if (word.length() > indexOfCharOfInterest()) {
+			// We either add the word as InformationNode or find its place in
+			// the BranchNode
+			int charOfInterestToRadix = BranchNodeHelper.getCharToRadix(getCharOfInterest(word));
+			Node nodeInPlaceOfWord = children[charOfInterestToRadix];
+
+			// If node is empty -> create a new InformationNode
+			// wordSoFar becomes the word itself
+			if (nodeInPlaceOfWord == null) {
+				children[charOfInterestToRadix] = new InformationNode(word);
+
+				// If node is an InformationNode -> see at which character they differ
+				// Make a new BranchNode with wordSoFar up until the character which
+				// is different Insert the word and the InformationNode in the the BranchNode
+				// At indexes corresponding to the first different character
+			} else if (nodeInPlaceOfWord.isInformationNode()) {
+				// nodeInPlaceOfWord is an InformationNode containing a word
+				InformationNode infoNode = Node.asInformationNode(nodeInPlaceOfWord);
+
+				int firstIndexOfDifference = BranchNodeHelper.sameUntil(infoNode.getWord(), word);
+
+				// creating a new Branch with a wordSoFar the common prefix
+				// of the InformationNode and the word we want to insert
+				children[charOfInterestToRadix] = new BranchNode(word.substring(0, firstIndexOfDifference));
+
+				// places the InformationNode in its place in the new BranchNode
+				int newInfoNodeInxed = BranchNodeHelper
+						.getCharToRadix(infoNode.getWord().charAt(firstIndexOfDifference));
+				Node.asBranchNode(children[charOfInterestToRadix]).setChild(newInfoNodeInxed, infoNode);
+
+				// places the word in its place in the new BranchNode as an
+				// InformatioNode
+				int newWordIndex = BranchNodeHelper.getCharToRadix(word.charAt(firstIndexOfDifference));
+				Node.asBranchNode(children[charOfInterestToRadix]).setChild(newWordIndex, new InformationNode(word));
+			} else {
+				String wordSoFarBranchNode = Node.asBranchNode(nodeInPlaceOfWord).wordSoFar;
+				if (word.length() > wordSoFarBranchNode.length()) {					
+					Node.asBranchNode(nodeInPlaceOfWord).insert(word);
+				} else {					
+					// The word we wish to insert is shorter than the common prefix of
+					// the words in the BranchNode
+					// We need to build an intermediate BranchNode figuring out when
+					// the end of the common prefix ends and adding one
+					int firstIndexOfDifference = BranchNodeHelper.sameUntil(wordSoFarBranchNode, word);
+					int lastCommonCharIndex = firstIndexOfDifference - 1;
+		
+					// last common char between word and in Branch's wordSoFar to radix index
+					int intermediateIndex = BranchNodeHelper.getCharToRadix(word.charAt(lastCommonCharIndex));
+		
+					// saving the BranchNode with common prefix of its
+					// InformationNodes longer that the word we want to insert
+					BranchNode commonPrefixBranch = Node.asBranchNode(children[charOfInterestToRadix]);
+					// creating the intermediate BranchNode setting wordSoFar
+					children[intermediateIndex] = new BranchNode(wordSoFarBranchNode.substring(0, firstIndexOfDifference));
+		
+					// The old BranchNode should be placed at index corresponding to
+					// the first letter of its wordSoFar that is not common with the word we wanted to insert
+					int indexOfOldBranchInNewBranch = BranchNodeHelper
+							.getCharToRadix(commonPrefixBranch.wordSoFar.charAt(firstIndexOfDifference));
+					// placing the old BranchNode into the new intermediate BranchNode
+					Node.asBranchNode(children[intermediateIndex]).setChild(indexOfOldBranchInNewBranch, commonPrefixBranch);
+
+					// the first letter of its wordSoFar that is not common with the word we wanted to insert
+					int indexOfWordInNewBranch = BranchNodeHelper
+							.getCharToRadix(word.charAt(firstIndexOfDifference));
+					// placing the word as an InformatonNode in the new intermediate BranchNode
+					Node.asBranchNode(children[intermediateIndex]).setChild(indexOfWordInNewBranch, new InformationNode(word));
+				}
+			}
+		}
 	}
 
-	public void insert(String word, int charToCompare) {
-		childrenCount += 1; //?
-		//vijdame simvola na poziciq charAt na koi index otgovarq i zapazvame referenciqta v tozi index
-		int radixIndex = BranchNodeHelper.getCharToRadix( word.charAt(charToCompare));
-		Node reference = children[radixIndex]; 
-		
-		if ( reference == null ) {
-			//sazdavame novo listo
-			children[radixIndex] = new InformationNode(word);
+	public boolean search(String word) {
+		System.out.println(indexOfCharOfInterest());
+		if (word.length() < indexOfCharOfInterest()) {
+			return false;
+		}
+		int radix = BranchNodeHelper.getCharToRadix( getCharOfInterest(word) );
+		Node node = children[radix];
+		if (node == null) {
+			return false;
+		} else if (node.isInformationNode()) {
+			return Node.asInformationNode(node).getWord().equals(word);
 		} else {
-			if (reference.isInformationNode()) {
-				//mestim infoNode-a kato sazdavame nov branchNode
-				InformationNode infoNode = (InformationNode) reference;
-				
-				//kompresirame Trie kato setame saotvetniq skip
-				int newCharOfInterest = BranchNodeHelper.sameUntil(infoNode.getWord(), word);
-				children[radixIndex] = new BranchNode(newCharOfInterest);
-				
-				int newRadixIndexOfInfoNode = BranchNodeHelper.getCharToRadix(infoNode.getWord().charAt(newCharOfInterest));
-				((BranchNode) children[radixIndex]).setChild( newRadixIndexOfInfoNode, infoNode);
-				((BranchNode) children[radixIndex]).insert(word, newCharOfInterest);
-				
-			} else {
-				//izpolzvame sashtesvuvashtiq branchNode kato padame rekursivno v nov insert
-				((BranchNode) reference).insert(word, charToCompare + 1); //comparing next char
-			}
+			return Node.asBranchNode(node).search(word);
 		}
 	}
 }

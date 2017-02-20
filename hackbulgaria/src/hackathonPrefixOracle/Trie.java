@@ -1,29 +1,27 @@
 package hackathonPrefixOracle;
 
 public class Trie implements Trieable{
-	private BranchNode root;
+	private BranchNode root = new BranchNode(""); //empty word -> epsilon
 	
-	public Trie() {
-		this.root = new BranchNode(0);
-	}
-
 	@Override
 	public void insert(String word) {
-		root.insert(word, 0);
+		// Root is always a BranchNode so I can call insert
+		root.insert(word);
 	}
 
 	@Override
 	public boolean search(String word) {
-		// TODO Auto-generated method stub
-		return false;
+		//appends EOW and call search on the root
+		return root.search(word + "#");
 	}
 	
 	public String toString() {
-		//ne mu e chista rabotata na toq metod
+		//TODO fix this
 		helper(root,"");		
 		return "";
 	}
 	
+	// recursively print all nodes 
 	private static void helper(BranchNode node, String ident) {
 		for(int i = 0; i < 27; i++) {
 			Node child = node.getChild(i);

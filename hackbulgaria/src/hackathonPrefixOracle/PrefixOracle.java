@@ -15,7 +15,6 @@ public class PrefixOracle {
 			Files.lines(Paths.get(filePath), StandardCharsets.UTF_8).forEach((word) -> trie.insert(word));
 
 		} catch (IOException e) {
-			System.out.println("tapak");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

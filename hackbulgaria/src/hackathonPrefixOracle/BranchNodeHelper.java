@@ -81,7 +81,7 @@ public class BranchNodeHelper {
 		}
 		
 		// as we started from 0 and incremented on the first match 
-		//the result will be the index of the first chars which are not the same
+		// the result will be the index of the last common prefix char + 1
 		return lengthCommonSubstring; 
 	}
 	

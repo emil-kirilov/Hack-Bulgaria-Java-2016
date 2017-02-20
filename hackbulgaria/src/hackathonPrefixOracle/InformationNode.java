@@ -10,4 +10,8 @@ public class InformationNode extends Node{
 	public String getWord() {
 		return word;
 	}
+	
+	public String toString() {
+		return word;
+	}
 }
