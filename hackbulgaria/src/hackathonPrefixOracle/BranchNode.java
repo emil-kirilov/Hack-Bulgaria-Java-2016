@@ -3,23 +3,22 @@ package hackathonPrefixOracle;
 public class BranchNode extends Node{
 	//references the first node of the subtrie 
 	//Node firstNode;
-	//represents the skip 
-	private int skip;
+	private int charOfInterest;
 	//stands for the letters of the alphabet and '#' (End Of Word)
 	private Node[] children = new Node[27];
 	private int childrenCount = 0;
 	
 	
-	public BranchNode(int skip) {
-		this.skip = skip;
+	public BranchNode(int charOfInterest) {
+		this.charOfInterest = charOfInterest;
 	}
 	
-	public int getSkip() {
-		return skip;
+	public int getcharOfInterest() {
+		return charOfInterest;
 	}
 	
-	public void setSkip(int skip) {
-		this.skip = skip;
+	public void setcharOfInterest(int charOfInterest) {
+		this.charOfInterest= charOfInterest;
 	}
 	
 	public Node getChild(int index) {
@@ -34,33 +33,31 @@ public class BranchNode extends Node{
 		return childrenCount;
 	}
 
-	public void insert(String word, int index) {
+	public void insert(String word, int charToCompare) {
+		childrenCount += 1; //?
 		//vijdame simvola na poziciq charAt na koi index otgovarq i zapazvame referenciqta v tozi index
-		int radixIndex = BranchNodeHelper.getRadixIndex( word, index);
+		int radixIndex = BranchNodeHelper.getCharToRadix( word.charAt(charToCompare));
 		Node reference = children[radixIndex]; 
 		
 		if ( reference == null ) {
 			//sazdavame novo listo
 			children[radixIndex] = new InformationNode(word);
-			
 		} else {
-			index++;
-			
 			if (reference.isInformationNode()) {
 				//mestim infoNode-a kato sazdavame nov branchNode
 				InformationNode infoNode = (InformationNode) reference;
 				
 				//kompresirame Trie kato setame saotvetniq skip
-				int newSkip = BranchNodeHelper.getSkipAfterIndex(skip, infoNode.getWord(), word);
-				children[radixIndex] = new BranchNode(newSkip);
-				((BranchNode) children[radixIndex]).setChild( BranchNodeHelper.getRadixIndex( infoNode.getWord(), index), infoNode); //childrenCount stays the same
-				((BranchNode) children[radixIndex]).insert(word, newSkip + skip); //childrenCount += 1?
+				int newCharOfInterest = BranchNodeHelper.sameUntil(infoNode.getWord(), word);
+				children[radixIndex] = new BranchNode(newCharOfInterest);
 				
+				int newRadixIndexOfInfoNode = BranchNodeHelper.getCharToRadix(infoNode.getWord().charAt(newCharOfInterest));
+				((BranchNode) children[radixIndex]).setChild( newRadixIndexOfInfoNode, infoNode);
+				((BranchNode) children[radixIndex]).insert(word, newCharOfInterest);
 				
 			} else {
 				//izpolzvame sashtesvuvashtiq branchNode kato padame rekursivno v nov insert
-				((BranchNode) reference).insert(word, index);
-				
+				((BranchNode) reference).insert(word, charToCompare + 1); //comparing next char
 			}
 		}
 	}

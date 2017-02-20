@@ -19,23 +19,23 @@ public class Trie implements Trieable{
 	}
 	
 	public String toString() {
-		return helper(root, "");
+		//ne mu e chista rabotata na toq metod
+		helper(root,"");		
+		return "";
 	}
 	
-	private static String helper(Node node, String res) {
-		if(node != null) {
-			for(int i = 0; i < 27; i++) {
-				if (node.isInformationNode()) {
-					res +=  Node.asInformationNode(node).getWord() + "\n";					
+	private static void helper(BranchNode node, String ident) {
+		for(int i = 0; i < 27; i++) {
+			Node child = node.getChild(i);
+			if (child != null) {		
+				if (child.isInformationNode()) {
+					System.out.println( ident + Node.asInformationNode(child).getWord() + "\n");					
 				} else {
-					res += 
+					System.out.println( ident + BranchNodeHelper.getRadixToChar(i) + "\n");
+					helper((BranchNode) node.getChild(i), ident + "    ");
 				}
 			}
-			String addTab = "    ";
-			
 		}
-		
-		return res;
 	}
 
 }

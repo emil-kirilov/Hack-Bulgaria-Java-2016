@@ -12,7 +12,7 @@ public class Main {
 		Node g = new Node(f, "g");
 		
 		LCA lca = new LCA();
-		Node leastCommonAncestor = lca.getLCA(e, g);
+		Node leastCommonAncestor = lca.getLCA(c, g);
 		System.out.println("LCA is node " + leastCommonAncestor.name);
 	}
 }

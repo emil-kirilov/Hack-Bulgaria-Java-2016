@@ -69,10 +69,10 @@ public class BranchNodeHelper {
 		return radix.get(charAt);
 	}
 
-	public static int getSkipAfterIndex(int skip, String a, String b) {
+	public static int sameUntil(String a, String b) {
 		int lengthCommonSubstring = 0;
 		
-		for(int i = skip; i < Math.min( a.length() ,b.length() ); i++ ) {
+		for(int i = 0; i < Math.min( a.length() ,b.length() ); i++ ) {
 			if (a.charAt(i) == b.charAt(i)) {
 				lengthCommonSubstring++;
 			} else {
@@ -80,10 +80,12 @@ public class BranchNodeHelper {
 			}
 		}
 		
-		return lengthCommonSubstring;
+		// as we started from 0 and incremented on the first match 
+		//the result will be the index of the first chars which are not the same
+		return lengthCommonSubstring; 
 	}
 	
-	public Character getRadixToChar(int radix) {
+	public static Character getRadixToChar(int radix) {
 		return abc.get(radix);
 	}
 }
