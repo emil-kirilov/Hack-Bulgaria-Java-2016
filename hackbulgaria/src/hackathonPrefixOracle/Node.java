@@ -1,15 +1,15 @@
 package hackathonPrefixOracle;
 
 public abstract class Node {
-	public boolean isInformationNode() {
+	public boolean isElement() {
 		return getClass().getSimpleName().equals("InformationNode");		
 	}
 	
-	public static InformationNode asInformationNode(Node node) {
-		return (InformationNode) node;
+	public static Element asElement(Node node) {
+		return (Element) node;
 	}
 	
-	public static BranchNode asBranchNode(Node node) {
-		return (BranchNode) node;
+	public static Branch asBranch(Node node) {
+		return (Branch) node;
 	}
 }

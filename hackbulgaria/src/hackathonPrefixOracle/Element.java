@@ -1,9 +1,9 @@
 package hackathonPrefixOracle;
 
-public class InformationNode extends Node{
+public class Element extends Node{
 	private final String word;
 	
-	public InformationNode(String word) {
+	public Element(String word) {
 		this.word = word;
 	}
 	

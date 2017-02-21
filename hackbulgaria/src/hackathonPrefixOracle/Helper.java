@@ -2,9 +2,9 @@ package hackathonPrefixOracle;
 
 import java.util.HashMap;
 
-public class BranchNodeHelper {
+public class Helper {
 	@SuppressWarnings("serial")
-	private static final HashMap<Character, Integer> radix = new HashMap<Character, Integer>(27) {{
+	private static final HashMap<Character, Integer> charToIndex = new HashMap<Character, Integer>(27) {{
 		put('a',0);
 		put('b',1);
 		put('c',2);
@@ -35,7 +35,7 @@ public class BranchNodeHelper {
 	}};
 	
 	@SuppressWarnings("serial")
-	private static final HashMap<Integer, Character> abc = new HashMap<Integer, Character>(27) {{
+	private static final HashMap<Integer, Character> indexToChar = new HashMap<Integer, Character>(27) {{
 		put(0, 'a');
 		put(1, 'b');
 		put(2, 'c');
@@ -66,7 +66,7 @@ public class BranchNodeHelper {
 	}};
 	
 	public static int getCharToRadix(char charAt) {
-		return radix.get(charAt);
+		return charToIndex.get(charAt);
 	}
 
 	public static int sameUntil(String a, String b) {
@@ -89,6 +89,10 @@ public class BranchNodeHelper {
 	}
 	
 	public static Character getRadixToChar(int radix) {
-		return abc.get(radix);
+		return indexToChar.get(radix);
+	}
+
+	public static int indexInChildren(String word, int charOfInterest) {
+		return charToIndex.get( word.charAt(charOfInterest) );
 	}
 }

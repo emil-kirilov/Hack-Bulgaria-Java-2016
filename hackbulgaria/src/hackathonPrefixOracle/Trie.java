@@ -1,11 +1,11 @@
 package hackathonPrefixOracle;
 
 public class Trie implements Trieable{
-	private BranchNode root = new BranchNode(""); //empty word -> epsilon
+	private Branch root = new Branch(""); //empty word -> epsilon
 	
 	@Override
 	public void insert(String word) {
-		// Root is always a BranchNode so I can call insert
+		// Root is always a Branch so I can call insert
 		root.insert(word);
 	}
 
@@ -22,15 +22,15 @@ public class Trie implements Trieable{
 	}
 	
 	// recursively print all nodes 
-	private static void helper(BranchNode node, String ident) {
+	private static void helper(Branch node, String ident) {
 		for(int i = 0; i < 27; i++) {
 			Node child = node.getChild(i);
 			if (child != null) {		
-				if (child.isInformationNode()) {
-					System.out.println( ident + Node.asInformationNode(child).getWord() + "\n");					
+				if (child.isElement()) {
+					System.out.println( ident + Node.asElement(child).getWord() + "\n");					
 				} else {
-					System.out.println( ident + BranchNodeHelper.getRadixToChar(i) + "\n");
-					helper((BranchNode) node.getChild(i), ident + "    ");
+					System.out.println( ident + Helper.getRadixToChar(i) + "\n");
+					helper((Branch) node.getChild(i), ident + "    ");
 				}
 			}
 		}
