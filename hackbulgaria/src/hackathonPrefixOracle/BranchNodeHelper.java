@@ -71,8 +71,11 @@ public class BranchNodeHelper {
 
 	public static int sameUntil(String a, String b) {
 		int lengthCommonSubstring = 0;
+		int goTo = Math.min( a.length() ,b.length() );
 		
-		for(int i = 0; i < Math.min( a.length() ,b.length() ); i++ ) {
+		// As every word ends with #, words like blue# and blueberry# will differ at char 4
+		// counting from 0, which is the result I aimed to get
+		for(int i = 0; i < goTo; i++ ) {
 			if (a.charAt(i) == b.charAt(i)) {
 				lengthCommonSubstring++;
 			} else {
@@ -80,7 +83,7 @@ public class BranchNodeHelper {
 			}
 		}
 		
-		// as we started from 0 and incremented on the first match 
+		// as we started from 0 and incremented lengthCommonSubstring on the first match 
 		// the result will be the index of the last common prefix char + 1
 		return lengthCommonSubstring; 
 	}
