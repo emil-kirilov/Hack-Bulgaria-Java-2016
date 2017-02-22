@@ -1,4 +1,4 @@
-package hackathonPrefixOracle;
+package hackathonPrefixTree;
 
 public class Element extends Node{
 	private final String word;

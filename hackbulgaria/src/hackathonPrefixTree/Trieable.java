@@ -1,4 +1,4 @@
-package hackathonPrefixOracle;
+package hackathonPrefixTree;
 
 public interface Trieable {
 	public void insert(String word);

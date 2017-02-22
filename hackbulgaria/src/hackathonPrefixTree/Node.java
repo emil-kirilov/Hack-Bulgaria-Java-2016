@@ -1,8 +1,8 @@
-package hackathonPrefixOracle;
+package hackathonPrefixTree;
 
-public abstract class Node {
+public abstract class Node implements Cloneable{
 	public boolean isElement() {
-		return getClass().getSimpleName().equals("InformationNode");		
+		return getClass().getSimpleName().equals("Element");		
 	}
 	
 	public static Element asElement(Node node) {

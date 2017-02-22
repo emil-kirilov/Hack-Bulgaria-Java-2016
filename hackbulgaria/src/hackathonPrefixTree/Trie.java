@@ -1,7 +1,7 @@
-package hackathonPrefixOracle;
+package hackathonPrefixTree;
 
 public class Trie implements Trieable{
-	private Branch root = new Branch(""); //empty word -> epsilon
+	private Branch root = new Branch("#"); //empty word -> epsilon
 	
 	@Override
 	public void insert(String word) {

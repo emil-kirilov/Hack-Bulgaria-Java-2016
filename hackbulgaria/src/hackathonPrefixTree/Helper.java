@@ -1,4 +1,4 @@
-package hackathonPrefixOracle;
+package hackathonPrefixTree;
 
 import java.util.HashMap;
 
@@ -94,5 +94,18 @@ public class Helper {
 
 	public static int indexInChildren(String word, int charOfInterest) {
 		return charToIndex.get( word.charAt(charOfInterest) );
+	}
+
+	public static boolean samePrefix(String a, String b, int upUntil) {
+		boolean result = true;
+		
+		for (int i = 0; i < upUntil; i++) {
+			if (a.charAt(i) != b.charAt(i)) {
+				result = false;
+				break;
+			}
+		}
+		
+		return result;
 	}
 }
