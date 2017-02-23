@@ -15,25 +15,42 @@ public class Trie implements Trieable{
 		return root.search(word + "#");
 	}
 	
+	@Override
+	public String correct(String word) {
+		if (search(word)) {
+			System.out.println("There's such word!");
+		}
+		System.out.println("Alternative:\n\t");
+		return root.correct(word);
+	}
+	
 	public String toString() {
-		//TODO fix this
-		helper(root,"");		
+		//TODO make it faster, stringbuilders...
+		helper(root,"","", 0);		
 		return "";
 	}
 	
 	// recursively print all nodes 
-	private static void helper(Branch node, String ident) {
-		for(int i = 0; i < 27; i++) {
-			Node child = node.getChild(i);
+	private static void helper(Branch node, String ident, String wordSoFar, int oldCoI) {
+		char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+				'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '#'}; 
+		
+		for(Character ch : letters) {
+			String prefix = wordSoFar;
+			Node child = node.getChild(ch);
 			if (child != null) {		
+				int coi = Node.asBranch(node).getCoI();   // coi = character of interest
 				if (child.isElement()) {
-					System.out.println( ident + Node.asElement(child).getWord() + "\n");					
+					String word = Node.asElement(child).getWord();
+					System.out.println( ident + word.substring(0, oldCoI) + "{" + word.charAt(oldCoI) + "}" +
+							word.substring(oldCoI + 1, coi) + "[" + word.charAt(coi) + "]" + word.substring(coi + 1)+ "\n");					
 				} else {
-					System.out.println( ident + Helper.getRadixToChar(i) + "\n");
-					helper((Branch) node.getChild(i), ident + "    ");
+					prefix += String.valueOf(ch);
+					System.out.println(ident + prefix + " } (" + Node.asBranch(node).childrenCount + ")");
+					helper((Branch) node.getChild(ch), ident + "    ", prefix, coi);
 				}
 			}
 		}
+			System.out.println(ident + "}");
 	}
-
 }

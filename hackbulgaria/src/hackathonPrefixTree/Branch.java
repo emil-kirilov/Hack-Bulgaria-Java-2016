@@ -1,14 +1,19 @@
 package hackathonPrefixTree;
 
-public class Branch extends Node implements Cloneable {
-	// common prefix for children
-	String wordSoFar;
-	// first char of difference between all children
-	int charOfInterest = Integer.MAX_VALUE;
-	//int childrenCount = 0;
-	// stands for the letters of the alphabet - starting letters of the children and '#' (End Of Word)
-	private Node[] children = new Node[27];
+import java.util.HashMap;
 
+public class Branch extends Node implements Cloneable {
+	private static final char epsilon = '#';
+	public static int epsCount = 0;
+	// common prefix for children
+	private String wordSoFar;
+	// first char of difference between all children
+	private int charOfInterest = Integer.MAX_VALUE;
+	public int childrenCount = 0;
+	// stands for the letters of the alphabet - starting letters of the children and '#' (End Of Word)
+	private HashMap<Character, Node> children = new HashMap<>(27);
+	
+	
 	public Branch(String wordSoFar) {
 		this.wordSoFar = wordSoFar;
 	}
@@ -22,14 +27,24 @@ public class Branch extends Node implements Cloneable {
 		return word.charAt(charOfInterest);
 	}
 	
-	public void setChild(int index, Node node) {
-		children[index] = node;
+	public void setChild(char key, Node value) {
+		if (key == '#') {
+			children.put(epsilon, value);
+			epsCount++;
+		} else {
+			children.put(key, value);
+		}
 	}
 	
-	public Node getChild(int index) {
-		return children[index];
+	public int getCoI() {
+		return charOfInterest;
+	}
+	
+	public Node getChild(char key) {
+		return children.get(key);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void insert(String word) {
 		// 0) this node has to determine what to do with the word:
 		// 0.1) if wordSoFar is prefix of the word and the word is long enough to provide the charOfInterest
@@ -37,6 +52,7 @@ public class Branch extends Node implements Cloneable {
 		
 		// 0.1)
 		if (word.length() > charOfInterest && Helper.samePrefix(word, wordSoFar, charOfInterest)) {
+			childrenCount++;
 			// word has come to the right place
 			// 1) 		we need to establish the word's index in children
 			// 2) 		check whether that index is free/ occupied
@@ -47,39 +63,39 @@ public class Branch extends Node implements Cloneable {
 
 		
 			// 1)
-			int indexInChildren = Helper.indexInChildren(word, charOfInterest);
+			char indexInchildren = word.charAt(charOfInterest);
 		
 			// 2)
-			Node nodeAtIndex = children[indexInChildren];
+			Node nodeAtIndex2 = children.get(indexInchildren);
 			
 			//2.1)
-			if(nodeAtIndex == null) {
-				children[indexInChildren] = new Element(word);
-			
+			if(nodeAtIndex2 == null) { //  nodeAtIndex == null
+				children.put(indexInchildren, new Element(word));
 			// 2.2)
 			} else {
-				
 				// 2.2.1)
-				if (nodeAtIndex.isElement()) {
-					Element elementAtIndex = Node.asElement(nodeAtIndex);
+				if (nodeAtIndex2.isElement()) {  // nodeAtIndex2.isElement()
+					Element elementAtIndex2 = Node.asElement(nodeAtIndex2);
 					
 					//creating the new branch
-					int newCharOfInterest = Helper.sameUntil(word, elementAtIndex.getWord());
+					int newCharOfInterest = Helper.sameUntil(word, elementAtIndex2.getWord());
 					String newWordSoFar = word.substring(0, newCharOfInterest);
-					children[indexInChildren] = new Branch(newWordSoFar, newCharOfInterest);
+					children.put(indexInchildren, new Branch(newWordSoFar, newCharOfInterest));
 					
 					// Finding the place of:
 					// the element in the new branch and putting it there
-					int indexOfElementInBranch = Helper.indexInChildren( elementAtIndex.getWord() , newCharOfInterest);
-					Node.asBranch( children[indexInChildren] ).setChild(indexOfElementInBranch, elementAtIndex);
+					char indexOfElementInBranch2 = elementAtIndex2.getWord().charAt( newCharOfInterest );
+					Node.asBranch( children.get(indexInchildren) ).setChild(indexOfElementInBranch2, elementAtIndex2);
+					Node.asBranch( children.get(indexInchildren) ).childrenCount++;
 					
 					// the word in the new branch and putting it there
-					int indexOfWordInBranch = Helper.indexInChildren( word , newCharOfInterest);
-					Node.asBranch( children[indexInChildren] ).setChild( indexOfWordInBranch , new Element(word));
-				
+					char indexOfWordInBranch2 = word.charAt( newCharOfInterest );
+					Node.asBranch( children.get( indexInchildren) ).setChild( indexOfWordInBranch2 , new Element(word));
+					Node.asBranch( children.get(indexInchildren) ).childrenCount++;
+					
 				// 2.2.2)
 				} else {
-					Node.asBranch(nodeAtIndex).insert(word);
+					Node.asBranch(nodeAtIndex2).insert(word);
 				}
 			}
 		
@@ -93,25 +109,26 @@ public class Branch extends Node implements Cloneable {
 			
 			// 1)
 			try {
+				childrenCount++;
 				Node copyOfBranch = (Branch) this.clone();
-				Node.asBranch(copyOfBranch).children = children.clone();
+				Node.asBranch(copyOfBranch).children = (HashMap<Character, Node>) children.clone();
 			
 				
 				// 2)
 				// wiping the current Branch and setting it anew
 				charOfInterest = Helper.sameUntil(word, wordSoFar);
 				wordSoFar = word.substring(0, charOfInterest);
-				for (int i = 0; i < 27; i++) {
-					children[i] = null;
-				}
+				childrenCount = 0;
+	//childrenCount -= children.size();
+				children = new HashMap<Character, Node>(27);
 				
 				// 3)
-				int indexOfWordInChildren = Helper.indexInChildren(word, charOfInterest);
-				setChild( indexOfWordInChildren ,new Element(word));
+				char indexOfWordInchildren = word.charAt(charOfInterest);
+				setChild( indexOfWordInchildren ,new Element(word));
 				
 				// 4)
-				int indexOfCopyBranchInChildren = Helper.indexInChildren( Node.asBranch(copyOfBranch).wordSoFar, charOfInterest);
-				setChild( indexOfCopyBranchInChildren , copyOfBranch);
+				char indexOfCopyBranchInchildren = Node.asBranch(copyOfBranch).wordSoFar.charAt(charOfInterest);
+				setChild( indexOfCopyBranchInchildren , copyOfBranch);
 			
 			} catch (CloneNotSupportedException e) {
 				// TODO Auto-generated catch block
@@ -124,8 +141,8 @@ public class Branch extends Node implements Cloneable {
 		if (word.length() < charOfInterest) {
 			return false;
 		}
-		int radix = Helper.getCharToRadix( getCharOfInterest(word) );
-		Node node = children[radix];
+		char radix = getCharOfInterest(word);
+		Node node = children.get(radix);
 		if (node == null) {
 			return false;
 		} else if (node.isElement()) {
@@ -133,5 +150,11 @@ public class Branch extends Node implements Cloneable {
 		} else {
 			return Node.asBranch(node).search(word);
 		}
+	}
+	
+	public String correct(String word) {
+		// apble
+		
+		return null;
 	}
 }

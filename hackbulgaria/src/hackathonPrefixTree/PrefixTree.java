@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class PrefixTree {
-	Trie trie;
+	private Trie trie;
 	
 	public PrefixTree(String filePath) { 
 		trie = new Trie();
@@ -18,6 +18,14 @@ public class PrefixTree {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean search(String word) {
+		return trie.search(word);
+	}
+	
+	public String correct(String word) {
+		return trie.correct(word);
 	}
 	
 	public String toString() {
