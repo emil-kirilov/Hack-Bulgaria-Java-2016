@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
 
-public class PrefixTree {
+public class PrefixTree implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Trie trie;
 	
 	public PrefixTree(String filePath) { 
@@ -24,8 +29,8 @@ public class PrefixTree {
 		return trie.search(word);
 	}
 	
-	public String correct(String word) {
-		return trie.correct(word);
+	public Set<String> suggest(String word) {
+		return trie.suggest(word);
 	}
 	
 	public String toString() {

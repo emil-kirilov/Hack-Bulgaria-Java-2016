@@ -1,6 +1,8 @@
 package hackathonPrefixTree;
 
-public abstract class Node implements Cloneable{
+import java.util.Set;
+
+public abstract class Node {
 	public boolean isElement() {
 		return getClass().getSimpleName().equals("Element");		
 	}
@@ -12,4 +14,7 @@ public abstract class Node implements Cloneable{
 	public static Branch asBranch(Node node) {
 		return (Branch) node;
 	}
+	
+	public abstract Set<String> suggest(String word);
+	public abstract boolean search(String word);
 }

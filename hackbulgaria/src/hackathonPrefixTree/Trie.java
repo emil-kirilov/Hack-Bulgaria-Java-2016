@@ -1,6 +1,8 @@
 package hackathonPrefixTree;
 
-public class Trie implements Trieable{
+import java.util.Set;
+
+public class Trie implements Trieable {
 	private Branch root = new Branch("#"); //empty word -> epsilon
 	
 	@Override
@@ -16,12 +18,12 @@ public class Trie implements Trieable{
 	}
 	
 	@Override
-	public String correct(String word) {
-		if (search(word)) {
-			System.out.println("There's such word!");
-		}
-		System.out.println("Alternative:\n\t");
-		return root.correct(word);
+	public Set<String> suggest(String word) {
+		//if (search(word)) {
+		//	System.out.println("There's such word!");
+		//}
+		//System.out.println("Alternatives:\n\t");
+		return root.suggest(word);
 	}
 	
 	public String toString() {
@@ -46,7 +48,7 @@ public class Trie implements Trieable{
 							word.substring(oldCoI + 1, coi) + "[" + word.charAt(coi) + "]" + word.substring(coi + 1)+ "\n");					
 				} else {
 					prefix += String.valueOf(ch);
-					System.out.println(ident + prefix + " } (" + Node.asBranch(node).childrenCount + ")");
+					System.out.println(ident + prefix + " {");
 					helper((Branch) node.getChild(ch), ident + "    ", prefix, coi);
 				}
 			}

@@ -108,4 +108,43 @@ public class Helper {
 		
 		return result;
 	}
+	
+
+	public static String substite(String word, int subtituteIndex, Character newLetter) {
+		return word.substring(0, subtituteIndex) + newLetter + word.substring(subtituteIndex+ 1);
+	}
+
+	public static int mutationsCount(String a, String b) {
+		// remove #
+		a = a.substring(0, a.length() - 1);
+		b = b.substring(0, b.length() - 1);
+				
+		int mutations = 0;
+		int lengthA = a.length();
+		int lengthB = b.length();
+		int commonLength = (lengthA < lengthB) ? lengthA : lengthB;
+		
+		for ( int i = 0; i < commonLength; i++) {
+			if(a.charAt(i) != b.charAt(i) ) {
+				mutations++;
+			}
+		}
+		
+		int wordsLengthDifference = Math.abs(lengthA - lengthB);
+		return mutations + wordsLengthDifference;
+	}
+
+	public static int mutationsInPrefix(String a, String prefix) {
+		int mutations = 0;
+		
+		for ( int i = 0; i < prefix.length(); i++) {
+			if(a.charAt(i) != prefix.charAt(i) ) {
+				mutations++;
+			}
+		}
+		
+		return mutations;
+	}
+	
+	
 }
